@@ -10,6 +10,12 @@
 		82C0D22A1CC891D70025C530 /* SKYoutube.h in Headers */ = {isa = PBXBuildFile; fileRef = 82C0D2291CC891D70025C530 /* SKYoutube.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82C0D2311CC891D70025C530 /* SKYoutube.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C0D2261CC891D70025C530 /* SKYoutube.framework */; };
 		82C0D2361CC891D70025C530 /* SKYoutubeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C0D2351CC891D70025C530 /* SKYoutubeTests.m */; };
+		82C0D2661CC8949A0025C530 /* SKYoutubePlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 82C0D2641CC8949A0025C530 /* SKYoutubePlayer.h */; };
+		82C0D2671CC8949A0025C530 /* SKYoutubePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C0D2651CC8949A0025C530 /* SKYoutubePlayer.m */; };
+		82C0D26F1CC895CC0025C530 /* SKUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C0D26E1CC895CC0025C530 /* SKUtils.framework */; };
+		82C0D2751CC896070025C530 /* YTPlayerView-iframe-player.html in Resources */ = {isa = PBXBuildFile; fileRef = 82C0D2721CC896070025C530 /* YTPlayerView-iframe-player.html */; };
+		82C0D2761CC896070025C530 /* YTPlayerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 82C0D2731CC896070025C530 /* YTPlayerView.h */; };
+		82C0D2771CC896070025C530 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C0D2741CC896070025C530 /* YTPlayerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +35,12 @@
 		82C0D2301CC891D70025C530 /* SKYoutubeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SKYoutubeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		82C0D2351CC891D70025C530 /* SKYoutubeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKYoutubeTests.m; sourceTree = "<group>"; };
 		82C0D2371CC891D70025C530 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		82C0D2641CC8949A0025C530 /* SKYoutubePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKYoutubePlayer.h; sourceTree = "<group>"; };
+		82C0D2651CC8949A0025C530 /* SKYoutubePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYoutubePlayer.m; sourceTree = "<group>"; };
+		82C0D26E1CC895CC0025C530 /* SKUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SKUtils.framework; path = Carthage/Build/iOS/SKUtils.framework; sourceTree = SOURCE_ROOT; };
+		82C0D2721CC896070025C530 /* YTPlayerView-iframe-player.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "YTPlayerView-iframe-player.html"; sourceTree = "<group>"; };
+		82C0D2731CC896070025C530 /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
+		82C0D2741CC896070025C530 /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82C0D26F1CC895CC0025C530 /* SKUtils.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +84,9 @@
 		82C0D2281CC891D70025C530 /* SKYoutube */ = {
 			isa = PBXGroup;
 			children = (
+				82C0D2631CC8949A0025C530 /* Player */,
+				82C0D2701CC896070025C530 /* Library */,
+				82C0D26B1CC8957E0025C530 /* Framework */,
 				82C0D2291CC891D70025C530 /* SKYoutube.h */,
 				82C0D22B1CC891D70025C530 /* Info.plist */,
 			);
@@ -86,6 +102,41 @@
 			path = SKYoutubeTests;
 			sourceTree = "<group>";
 		};
+		82C0D2631CC8949A0025C530 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				82C0D2641CC8949A0025C530 /* SKYoutubePlayer.h */,
+				82C0D2651CC8949A0025C530 /* SKYoutubePlayer.m */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		82C0D26B1CC8957E0025C530 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				82C0D26E1CC895CC0025C530 /* SKUtils.framework */,
+			);
+			path = Framework;
+			sourceTree = "<group>";
+		};
+		82C0D2701CC896070025C530 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				82C0D2711CC896070025C530 /* youtube-ios-player-helper */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		82C0D2711CC896070025C530 /* youtube-ios-player-helper */ = {
+			isa = PBXGroup;
+			children = (
+				82C0D2721CC896070025C530 /* YTPlayerView-iframe-player.html */,
+				82C0D2731CC896070025C530 /* YTPlayerView.h */,
+				82C0D2741CC896070025C530 /* YTPlayerView.m */,
+			);
+			path = "youtube-ios-player-helper";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -94,6 +145,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				82C0D22A1CC891D70025C530 /* SKYoutube.h in Headers */,
+				82C0D2761CC896070025C530 /* YTPlayerView.h in Headers */,
+				82C0D2661CC8949A0025C530 /* SKYoutubePlayer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82C0D2751CC896070025C530 /* YTPlayerView-iframe-player.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +247,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82C0D2771CC896070025C530 /* YTPlayerView.m in Sources */,
+				82C0D2671CC8949A0025C530 /* SKYoutubePlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +368,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SKYoutube/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -328,6 +388,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SKYoutube/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -376,6 +440,7 @@
 				82C0D23C1CC891D70025C530 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		82C0D23D1CC891D70025C530 /* Build configuration list for PBXNativeTarget "SKYoutubeTests" */ = {
 			isa = XCConfigurationList;
@@ -384,6 +449,7 @@
 				82C0D23F1CC891D70025C530 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
