@@ -74,7 +74,6 @@
 - (nullable NSError *)_stop {
     [self executeBlockingWiseInMainThread:^{
         [_innerPlayer stopVideo];
-        _progress = 0;
     }];
     
     return nil;
@@ -84,7 +83,6 @@
     float seekTime = (float)msec/1000;
     [self executeBlockingWiseInMainThread:^{
         [_innerPlayer seekToSeconds:seekTime allowSeekAhead:YES];
-        _progress = msec;
     }];
     
     return nil;

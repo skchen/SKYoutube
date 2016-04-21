@@ -10,7 +10,7 @@
 		82C0D22A1CC891D70025C530 /* SKYoutube.h in Headers */ = {isa = PBXBuildFile; fileRef = 82C0D2291CC891D70025C530 /* SKYoutube.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82C0D2311CC891D70025C530 /* SKYoutube.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C0D2261CC891D70025C530 /* SKYoutube.framework */; };
 		82C0D2361CC891D70025C530 /* SKYoutubeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C0D2351CC891D70025C530 /* SKYoutubeTests.m */; };
-		82C0D2661CC8949A0025C530 /* SKYoutubePlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 82C0D2641CC8949A0025C530 /* SKYoutubePlayer.h */; };
+		82C0D2661CC8949A0025C530 /* SKYoutubePlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 82C0D2641CC8949A0025C530 /* SKYoutubePlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82C0D2671CC8949A0025C530 /* SKYoutubePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C0D2651CC8949A0025C530 /* SKYoutubePlayer.m */; };
 		82C0D26F1CC895CC0025C530 /* SKUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C0D26E1CC895CC0025C530 /* SKUtils.framework */; };
 		82C0D2751CC896070025C530 /* YTPlayerView-iframe-player.html in Resources */ = {isa = PBXBuildFile; fileRef = 82C0D2721CC896070025C530 /* YTPlayerView-iframe-player.html */; };
@@ -145,8 +145,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				82C0D22A1CC891D70025C530 /* SKYoutube.h in Headers */,
-				82C0D2761CC896070025C530 /* YTPlayerView.h in Headers */,
 				82C0D2661CC8949A0025C530 /* SKYoutubePlayer.h in Headers */,
+				82C0D2761CC896070025C530 /* YTPlayerView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
