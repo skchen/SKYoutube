@@ -1,0 +1,391 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		82C0D22A1CC891D70025C530 /* SKYoutube.h in Headers */ = {isa = PBXBuildFile; fileRef = 82C0D2291CC891D70025C530 /* SKYoutube.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82C0D2311CC891D70025C530 /* SKYoutube.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C0D2261CC891D70025C530 /* SKYoutube.framework */; };
+		82C0D2361CC891D70025C530 /* SKYoutubeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C0D2351CC891D70025C530 /* SKYoutubeTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		82C0D2321CC891D70025C530 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 82C0D21D1CC891D70025C530 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 82C0D2251CC891D70025C530;
+			remoteInfo = SKYoutube;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		82C0D2261CC891D70025C530 /* SKYoutube.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SKYoutube.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		82C0D2291CC891D70025C530 /* SKYoutube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKYoutube.h; sourceTree = "<group>"; };
+		82C0D22B1CC891D70025C530 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		82C0D2301CC891D70025C530 /* SKYoutubeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SKYoutubeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		82C0D2351CC891D70025C530 /* SKYoutubeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKYoutubeTests.m; sourceTree = "<group>"; };
+		82C0D2371CC891D70025C530 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		82C0D2221CC891D70025C530 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82C0D22D1CC891D70025C530 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82C0D2311CC891D70025C530 /* SKYoutube.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		82C0D21C1CC891D70025C530 = {
+			isa = PBXGroup;
+			children = (
+				82C0D2281CC891D70025C530 /* SKYoutube */,
+				82C0D2341CC891D70025C530 /* SKYoutubeTests */,
+				82C0D2271CC891D70025C530 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		82C0D2271CC891D70025C530 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				82C0D2261CC891D70025C530 /* SKYoutube.framework */,
+				82C0D2301CC891D70025C530 /* SKYoutubeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		82C0D2281CC891D70025C530 /* SKYoutube */ = {
+			isa = PBXGroup;
+			children = (
+				82C0D2291CC891D70025C530 /* SKYoutube.h */,
+				82C0D22B1CC891D70025C530 /* Info.plist */,
+			);
+			path = SKYoutube;
+			sourceTree = "<group>";
+		};
+		82C0D2341CC891D70025C530 /* SKYoutubeTests */ = {
+			isa = PBXGroup;
+			children = (
+				82C0D2351CC891D70025C530 /* SKYoutubeTests.m */,
+				82C0D2371CC891D70025C530 /* Info.plist */,
+			);
+			path = SKYoutubeTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		82C0D2231CC891D70025C530 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82C0D22A1CC891D70025C530 /* SKYoutube.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		82C0D2251CC891D70025C530 /* SKYoutube */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82C0D23A1CC891D70025C530 /* Build configuration list for PBXNativeTarget "SKYoutube" */;
+			buildPhases = (
+				82C0D2211CC891D70025C530 /* Sources */,
+				82C0D2221CC891D70025C530 /* Frameworks */,
+				82C0D2231CC891D70025C530 /* Headers */,
+				82C0D2241CC891D70025C530 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SKYoutube;
+			productName = SKYoutube;
+			productReference = 82C0D2261CC891D70025C530 /* SKYoutube.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		82C0D22F1CC891D70025C530 /* SKYoutubeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82C0D23D1CC891D70025C530 /* Build configuration list for PBXNativeTarget "SKYoutubeTests" */;
+			buildPhases = (
+				82C0D22C1CC891D70025C530 /* Sources */,
+				82C0D22D1CC891D70025C530 /* Frameworks */,
+				82C0D22E1CC891D70025C530 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				82C0D2331CC891D70025C530 /* PBXTargetDependency */,
+			);
+			name = SKYoutubeTests;
+			productName = SKYoutubeTests;
+			productReference = 82C0D2301CC891D70025C530 /* SKYoutubeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		82C0D21D1CC891D70025C530 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = SK;
+				TargetAttributes = {
+					82C0D2251CC891D70025C530 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					82C0D22F1CC891D70025C530 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = 82C0D2201CC891D70025C530 /* Build configuration list for PBXProject "SKYoutube" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 82C0D21C1CC891D70025C530;
+			productRefGroup = 82C0D2271CC891D70025C530 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				82C0D2251CC891D70025C530 /* SKYoutube */,
+				82C0D22F1CC891D70025C530 /* SKYoutubeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		82C0D2241CC891D70025C530 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82C0D22E1CC891D70025C530 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		82C0D2211CC891D70025C530 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82C0D22C1CC891D70025C530 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82C0D2361CC891D70025C530 /* SKYoutubeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		82C0D2331CC891D70025C530 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 82C0D2251CC891D70025C530 /* SKYoutube */;
+			targetProxy = 82C0D2321CC891D70025C530 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		82C0D2381CC891D70025C530 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		82C0D2391CC891D70025C530 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		82C0D23B1CC891D70025C530 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SKYoutube/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.skchen.SKYoutube;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		82C0D23C1CC891D70025C530 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SKYoutube/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.skchen.SKYoutube;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		82C0D23E1CC891D70025C530 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SKYoutubeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.skchen.SKYoutubeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		82C0D23F1CC891D70025C530 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SKYoutubeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.skchen.SKYoutubeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		82C0D2201CC891D70025C530 /* Build configuration list for PBXProject "SKYoutube" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82C0D2381CC891D70025C530 /* Debug */,
+				82C0D2391CC891D70025C530 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		82C0D23A1CC891D70025C530 /* Build configuration list for PBXNativeTarget "SKYoutube" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82C0D23B1CC891D70025C530 /* Debug */,
+				82C0D23C1CC891D70025C530 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		82C0D23D1CC891D70025C530 /* Build configuration list for PBXNativeTarget "SKYoutubeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82C0D23E1CC891D70025C530 /* Debug */,
+				82C0D23F1CC891D70025C530 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 82C0D21D1CC891D70025C530 /* Project object */;
+}
