@@ -12,13 +12,40 @@
 		82C0D2361CC891D70025C530 /* SKYoutubeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C0D2351CC891D70025C530 /* SKYoutubeTests.m */; };
 		82C0D2661CC8949A0025C530 /* SKYoutubePlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 82C0D2641CC8949A0025C530 /* SKYoutubePlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82C0D2671CC8949A0025C530 /* SKYoutubePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C0D2651CC8949A0025C530 /* SKYoutubePlayer.m */; };
-		82C0D26F1CC895CC0025C530 /* SKUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C0D26E1CC895CC0025C530 /* SKUtils.framework */; };
 		82C0D2751CC896070025C530 /* YTPlayerView-iframe-player.html in Resources */ = {isa = PBXBuildFile; fileRef = 82C0D2721CC896070025C530 /* YTPlayerView-iframe-player.html */; };
 		82C0D2761CC896070025C530 /* YTPlayerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 82C0D2731CC896070025C530 /* YTPlayerView.h */; };
 		82C0D2771CC896070025C530 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C0D2741CC896070025C530 /* YTPlayerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		823E15DC1CDB76A3003C59A5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 823E15D51CDB76A3003C59A5 /* SKUtils.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 826803541CA94AE600C8B952;
+			remoteInfo = SKUtils;
+		};
+		823E15DE1CDB76A3003C59A5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 823E15D51CDB76A3003C59A5 /* SKUtils.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8268035E1CA94AE700C8B952;
+			remoteInfo = SKUtilsTests;
+		};
+		823E15E01CDB76A3003C59A5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 823E15D51CDB76A3003C59A5 /* SKUtils.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 82FB6D961CB6E5AE000DE9E9;
+			remoteInfo = "SKUtils-iOS7";
+		};
+		823E15E21CDB77E6003C59A5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 823E15D51CDB76A3003C59A5 /* SKUtils.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 826803531CA94AE600C8B952;
+			remoteInfo = SKUtils;
+		};
 		82C0D2321CC891D70025C530 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 82C0D21D1CC891D70025C530 /* Project object */;
@@ -29,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		823E15D51CDB76A3003C59A5 /* SKUtils.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SKUtils.xcodeproj; path = Libraries/SKUtils/SKUtils.xcodeproj; sourceTree = SOURCE_ROOT; };
 		82C0D2261CC891D70025C530 /* SKYoutube.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SKYoutube.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82C0D2291CC891D70025C530 /* SKYoutube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKYoutube.h; sourceTree = "<group>"; };
 		82C0D22B1CC891D70025C530 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,7 +65,6 @@
 		82C0D2371CC891D70025C530 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82C0D2641CC8949A0025C530 /* SKYoutubePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKYoutubePlayer.h; sourceTree = "<group>"; };
 		82C0D2651CC8949A0025C530 /* SKYoutubePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYoutubePlayer.m; sourceTree = "<group>"; };
-		82C0D26E1CC895CC0025C530 /* SKUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SKUtils.framework; path = Carthage/Build/iOS/SKUtils.framework; sourceTree = SOURCE_ROOT; };
 		82C0D2721CC896070025C530 /* YTPlayerView-iframe-player.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "YTPlayerView-iframe-player.html"; sourceTree = "<group>"; };
 		82C0D2731CC896070025C530 /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
 		82C0D2741CC896070025C530 /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
@@ -48,7 +75,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82C0D26F1CC895CC0025C530 /* SKUtils.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +89,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		823E15D61CDB76A3003C59A5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				823E15DD1CDB76A3003C59A5 /* SKUtils.framework */,
+				823E15DF1CDB76A3003C59A5 /* SKUtilsTests.xctest */,
+				823E15E11CDB76A3003C59A5 /* SKUtils.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		82C0D21C1CC891D70025C530 = {
 			isa = PBXGroup;
 			children = (
@@ -114,7 +150,7 @@
 		82C0D26B1CC8957E0025C530 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				82C0D26E1CC895CC0025C530 /* SKUtils.framework */,
+				823E15D51CDB76A3003C59A5 /* SKUtils.xcodeproj */,
 			);
 			path = Framework;
 			sourceTree = "<group>";
@@ -165,6 +201,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				823E15E31CDB77E6003C59A5 /* PBXTargetDependency */,
 			);
 			name = SKYoutube;
 			productName = SKYoutube;
@@ -216,6 +253,12 @@
 			mainGroup = 82C0D21C1CC891D70025C530;
 			productRefGroup = 82C0D2271CC891D70025C530 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 823E15D61CDB76A3003C59A5 /* Products */;
+					ProjectRef = 823E15D51CDB76A3003C59A5 /* SKUtils.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				82C0D2251CC891D70025C530 /* SKYoutube */,
@@ -223,6 +266,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		823E15DD1CDB76A3003C59A5 /* SKUtils.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SKUtils.framework;
+			remoteRef = 823E15DC1CDB76A3003C59A5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		823E15DF1CDB76A3003C59A5 /* SKUtilsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SKUtilsTests.xctest;
+			remoteRef = 823E15DE1CDB76A3003C59A5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		823E15E11CDB76A3003C59A5 /* SKUtils.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SKUtils.framework;
+			remoteRef = 823E15E01CDB76A3003C59A5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		82C0D2241CC891D70025C530 /* Resources */ = {
@@ -263,6 +330,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		823E15E31CDB77E6003C59A5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SKUtils;
+			targetProxy = 823E15E21CDB77E6003C59A5 /* PBXContainerItemProxy */;
+		};
 		82C0D2331CC891D70025C530 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 82C0D2251CC891D70025C530 /* SKYoutube */;
@@ -368,10 +440,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SKYoutube/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -388,10 +457,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SKYoutube/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
