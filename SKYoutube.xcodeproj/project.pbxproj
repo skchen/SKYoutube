@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		823E15E71CDB7C61003C59A5 /* SKYoutubeBrowser.h in Headers */ = {isa = PBXBuildFile; fileRef = 823E15E51CDB7C61003C59A5 /* SKYoutubeBrowser.h */; };
+		823E15E81CDB7C61003C59A5 /* SKYoutubeBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 823E15E61CDB7C61003C59A5 /* SKYoutubeBrowser.m */; };
+		823E15ED1CDB8619003C59A5 /* SKYoutubeBrowserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 823E15EC1CDB8619003C59A5 /* SKYoutubeBrowserTests.m */; };
+		823E15F21CDB8A42003C59A5 /* SKYoutubeConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 823E15F01CDB8A42003C59A5 /* SKYoutubeConnection.h */; };
+		823E15F31CDB8A42003C59A5 /* SKYoutubeConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 823E15F11CDB8A42003C59A5 /* SKYoutubeConnection.m */; };
+		823E15F61CDB8AAE003C59A5 /* SKYoutubeResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 823E15F41CDB8AAE003C59A5 /* SKYoutubeResponse.h */; };
+		823E15F71CDB8AAE003C59A5 /* SKYoutubeResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 823E15F51CDB8AAE003C59A5 /* SKYoutubeResponse.m */; };
+		823E15FA1CDB8CE1003C59A5 /* SKYoutubeListResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 823E15F81CDB8CE1003C59A5 /* SKYoutubeListResponse.h */; };
+		823E15FB1CDB8CE1003C59A5 /* SKYoutubeListResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 823E15F91CDB8CE1003C59A5 /* SKYoutubeListResponse.m */; };
+		823E15FE1CDB8D49003C59A5 /* SKYoutubePagedListResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 823E15FC1CDB8D49003C59A5 /* SKYoutubePagedListResponse.h */; };
+		823E15FF1CDB8D49003C59A5 /* SKYoutubePagedListResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 823E15FD1CDB8D49003C59A5 /* SKYoutubePagedListResponse.m */; };
+		823E16021CDB8EE4003C59A5 /* SKYoutubeSnippet.h in Headers */ = {isa = PBXBuildFile; fileRef = 823E16001CDB8EE4003C59A5 /* SKYoutubeSnippet.h */; };
+		823E16031CDB8EE4003C59A5 /* SKYoutubeSnippet.m in Sources */ = {isa = PBXBuildFile; fileRef = 823E16011CDB8EE4003C59A5 /* SKYoutubeSnippet.m */; };
+		823E16061CDB9F48003C59A5 /* SKYoutubeExtendableList.h in Headers */ = {isa = PBXBuildFile; fileRef = 823E16041CDB9F48003C59A5 /* SKYoutubeExtendableList.h */; };
+		823E16071CDB9F48003C59A5 /* SKYoutubeExtendableList.m in Sources */ = {isa = PBXBuildFile; fileRef = 823E16051CDB9F48003C59A5 /* SKYoutubeExtendableList.m */; };
 		82C0D22A1CC891D70025C530 /* SKYoutube.h in Headers */ = {isa = PBXBuildFile; fileRef = 82C0D2291CC891D70025C530 /* SKYoutube.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82C0D2311CC891D70025C530 /* SKYoutube.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C0D2261CC891D70025C530 /* SKYoutube.framework */; };
 		82C0D2361CC891D70025C530 /* SKYoutubeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C0D2351CC891D70025C530 /* SKYoutubeTests.m */; };
@@ -57,6 +72,21 @@
 
 /* Begin PBXFileReference section */
 		823E15D51CDB76A3003C59A5 /* SKUtils.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SKUtils.xcodeproj; path = Libraries/SKUtils/SKUtils.xcodeproj; sourceTree = SOURCE_ROOT; };
+		823E15E51CDB7C61003C59A5 /* SKYoutubeBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKYoutubeBrowser.h; sourceTree = "<group>"; };
+		823E15E61CDB7C61003C59A5 /* SKYoutubeBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYoutubeBrowser.m; sourceTree = "<group>"; };
+		823E15EC1CDB8619003C59A5 /* SKYoutubeBrowserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYoutubeBrowserTests.m; sourceTree = "<group>"; };
+		823E15F01CDB8A42003C59A5 /* SKYoutubeConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKYoutubeConnection.h; sourceTree = "<group>"; };
+		823E15F11CDB8A42003C59A5 /* SKYoutubeConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYoutubeConnection.m; sourceTree = "<group>"; };
+		823E15F41CDB8AAE003C59A5 /* SKYoutubeResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKYoutubeResponse.h; sourceTree = "<group>"; };
+		823E15F51CDB8AAE003C59A5 /* SKYoutubeResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYoutubeResponse.m; sourceTree = "<group>"; };
+		823E15F81CDB8CE1003C59A5 /* SKYoutubeListResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKYoutubeListResponse.h; sourceTree = "<group>"; };
+		823E15F91CDB8CE1003C59A5 /* SKYoutubeListResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYoutubeListResponse.m; sourceTree = "<group>"; };
+		823E15FC1CDB8D49003C59A5 /* SKYoutubePagedListResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKYoutubePagedListResponse.h; sourceTree = "<group>"; };
+		823E15FD1CDB8D49003C59A5 /* SKYoutubePagedListResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYoutubePagedListResponse.m; sourceTree = "<group>"; };
+		823E16001CDB8EE4003C59A5 /* SKYoutubeSnippet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKYoutubeSnippet.h; sourceTree = "<group>"; };
+		823E16011CDB8EE4003C59A5 /* SKYoutubeSnippet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYoutubeSnippet.m; sourceTree = "<group>"; };
+		823E16041CDB9F48003C59A5 /* SKYoutubeExtendableList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKYoutubeExtendableList.h; sourceTree = "<group>"; };
+		823E16051CDB9F48003C59A5 /* SKYoutubeExtendableList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYoutubeExtendableList.m; sourceTree = "<group>"; };
 		82C0D2261CC891D70025C530 /* SKYoutube.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SKYoutube.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82C0D2291CC891D70025C530 /* SKYoutube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKYoutube.h; sourceTree = "<group>"; };
 		82C0D22B1CC891D70025C530 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,6 +129,49 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		823E15E41CDB7C4E003C59A5 /* Browse */ = {
+			isa = PBXGroup;
+			children = (
+				823E15E51CDB7C61003C59A5 /* SKYoutubeBrowser.h */,
+				823E15E61CDB7C61003C59A5 /* SKYoutubeBrowser.m */,
+				823E16041CDB9F48003C59A5 /* SKYoutubeExtendableList.h */,
+				823E16051CDB9F48003C59A5 /* SKYoutubeExtendableList.m */,
+			);
+			path = Browse;
+			sourceTree = "<group>";
+		};
+		823E15EB1CDB8604003C59A5 /* Browse */ = {
+			isa = PBXGroup;
+			children = (
+				823E15EC1CDB8619003C59A5 /* SKYoutubeBrowserTests.m */,
+			);
+			path = Browse;
+			sourceTree = "<group>";
+		};
+		823E15EE1CDB8A1C003C59A5 /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				823E15F01CDB8A42003C59A5 /* SKYoutubeConnection.h */,
+				823E15F11CDB8A42003C59A5 /* SKYoutubeConnection.m */,
+				823E15F41CDB8AAE003C59A5 /* SKYoutubeResponse.h */,
+				823E15F51CDB8AAE003C59A5 /* SKYoutubeResponse.m */,
+				823E15F81CDB8CE1003C59A5 /* SKYoutubeListResponse.h */,
+				823E15F91CDB8CE1003C59A5 /* SKYoutubeListResponse.m */,
+				823E15FC1CDB8D49003C59A5 /* SKYoutubePagedListResponse.h */,
+				823E15FD1CDB8D49003C59A5 /* SKYoutubePagedListResponse.m */,
+			);
+			path = Connection;
+			sourceTree = "<group>";
+		};
+		823E15EF1CDB8A1C003C59A5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				823E16001CDB8EE4003C59A5 /* SKYoutubeSnippet.h */,
+				823E16011CDB8EE4003C59A5 /* SKYoutubeSnippet.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		82C0D21C1CC891D70025C530 = {
 			isa = PBXGroup;
 			children = (
@@ -120,7 +193,10 @@
 		82C0D2281CC891D70025C530 /* SKYoutube */ = {
 			isa = PBXGroup;
 			children = (
+				823E15E41CDB7C4E003C59A5 /* Browse */,
 				82C0D2631CC8949A0025C530 /* Player */,
+				823E15EF1CDB8A1C003C59A5 /* Model */,
+				823E15EE1CDB8A1C003C59A5 /* Connection */,
 				82C0D2701CC896070025C530 /* Library */,
 				82C0D26B1CC8957E0025C530 /* Framework */,
 				82C0D2291CC891D70025C530 /* SKYoutube.h */,
@@ -132,6 +208,7 @@
 		82C0D2341CC891D70025C530 /* SKYoutubeTests */ = {
 			isa = PBXGroup;
 			children = (
+				823E15EB1CDB8604003C59A5 /* Browse */,
 				82C0D2351CC891D70025C530 /* SKYoutubeTests.m */,
 				82C0D2371CC891D70025C530 /* Info.plist */,
 			);
@@ -180,9 +257,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				823E16061CDB9F48003C59A5 /* SKYoutubeExtendableList.h in Headers */,
+				823E15F21CDB8A42003C59A5 /* SKYoutubeConnection.h in Headers */,
+				823E15FE1CDB8D49003C59A5 /* SKYoutubePagedListResponse.h in Headers */,
+				823E16021CDB8EE4003C59A5 /* SKYoutubeSnippet.h in Headers */,
+				823E15F61CDB8AAE003C59A5 /* SKYoutubeResponse.h in Headers */,
 				82C0D22A1CC891D70025C530 /* SKYoutube.h in Headers */,
 				82C0D2661CC8949A0025C530 /* SKYoutubePlayer.h in Headers */,
+				823E15FA1CDB8CE1003C59A5 /* SKYoutubeListResponse.h in Headers */,
 				82C0D2761CC896070025C530 /* YTPlayerView.h in Headers */,
+				823E15E71CDB7C61003C59A5 /* SKYoutubeBrowser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +399,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				82C0D2771CC896070025C530 /* YTPlayerView.m in Sources */,
+				823E15E81CDB7C61003C59A5 /* SKYoutubeBrowser.m in Sources */,
+				823E15FB1CDB8CE1003C59A5 /* SKYoutubeListResponse.m in Sources */,
+				823E16031CDB8EE4003C59A5 /* SKYoutubeSnippet.m in Sources */,
 				82C0D2671CC8949A0025C530 /* SKYoutubePlayer.m in Sources */,
+				823E15FF1CDB8D49003C59A5 /* SKYoutubePagedListResponse.m in Sources */,
+				823E15F31CDB8A42003C59A5 /* SKYoutubeConnection.m in Sources */,
+				823E15F71CDB8AAE003C59A5 /* SKYoutubeResponse.m in Sources */,
+				823E16071CDB9F48003C59A5 /* SKYoutubeExtendableList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +414,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				823E15ED1CDB8619003C59A5 /* SKYoutubeBrowserTests.m in Sources */,
 				82C0D2361CC891D70025C530 /* SKYoutubeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
