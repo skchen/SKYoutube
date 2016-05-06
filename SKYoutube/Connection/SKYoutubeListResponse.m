@@ -8,7 +8,7 @@
 
 #import "SKYoutubeListResponse.h"
 
-#import "SKYoutubeSnippet.h"
+#import "SKYoutubeObject.h"
 
 static NSString * const kKeyList = @"items";
 
@@ -21,8 +21,11 @@ static NSString * const kKeyList = @"items";
     
     NSArray *rawItems = [dictionary objectForKey:kKeyList];
     for(NSDictionary *rawItem in rawItems) {
-        SKYoutubeSnippet *snippet = [[SKYoutubeSnippet alloc] initWithDictionary:rawItem];
-        [(NSMutableArray *)_items addObject:snippet];
+        SKYoutubeObject *object = [SKYoutubeObject objectWithDictionary:rawItem];
+        
+        if(object) {
+            [(NSMutableArray *)_items addObject:object];
+        }
     }
     
     return self;
