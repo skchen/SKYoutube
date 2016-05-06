@@ -12,6 +12,6 @@
 
 @interface SKYoutubeConnection : NSObject
 
-+ (nonnull SKYoutubePagedListResponse *)pagedListForApi:(nonnull NSString *)api andParameter:(nonnull NSDictionary *)parameter;
++ (nonnull SKYoutubeObject *)objectForApi:(nonnull NSString *)api andParameter:(nullable NSDictionary *)parameter;
 
 @end

@@ -10,6 +10,8 @@
 
 @interface SKYoutubeSnippet : NSObject
 
+@property(nonatomic, copy, readonly, nonnull) NSString *title;
+
 - (nonnull instancetype)initWithDictionary:(nonnull NSDictionary *)dictionary;
 
 @end

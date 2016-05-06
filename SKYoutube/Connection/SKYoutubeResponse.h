@@ -6,14 +6,8 @@
 //  Copyright © 2016年 SK. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "SKYoutubeObject.h"
 
-@interface SKYoutubeResponse : NSObject
-
-@property(nonatomic, copy, readonly, nonnull) NSString *kind;
-@property(nonatomic, copy, readonly, nonnull) NSString *tag;
-
-- (nullable instancetype)initWithData:(nonnull NSData *)data;
-- (nonnull instancetype)initWithDictionary:(nonnull NSDictionary *)dictionary;
+@interface SKYoutubeResponse : SKYoutubeObject
 
 @end

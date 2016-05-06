@@ -78,7 +78,7 @@ static NSString const * kCacheKeyMostPopular = @"mostPopular";
         [parameter setObject:pageCode forKey:@"pageToken"];
     }
     
-    return [SKYoutubeConnection pagedListForApi:@"youtube/v3/videos" andParameter:parameter];
+    return (SKYoutubePagedListResponse *)[SKYoutubeConnection objectForApi:@"youtube/v3/videos" andParameter:parameter];
 }
 
 @end

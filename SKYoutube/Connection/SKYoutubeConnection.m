@@ -10,22 +10,22 @@
 
 @implementation SKYoutubeConnection
 
-+ (nonnull SKYoutubePagedListResponse *)pagedListForApi:(nonnull NSString *)api andParameter:(NSDictionary *)parameter {
++ (nonnull SKYoutubeObject *)objectForApi:(nonnull NSString *)api andParameter:(nullable NSDictionary *)parameter {
     
     NSString *urlString = [SKYoutubeConnection urlForScheme:@"https" Host:@"www.googleapis.com" andPort:443 andApi:api andParameter:parameter];
     NSURL *url = [NSURL URLWithString:urlString];
     
     NSData *data = [NSData dataWithContentsOfURL:url];
     
-    return [[SKYoutubePagedListResponse alloc] initWithData:data];
+    return [SKYoutubeObject objectWithData:data];
 }
 
-+ (nonnull NSString *)urlForScheme:(nonnull NSString *)scheme Host:(nonnull NSString *)host andPort:(NSUInteger)port andApi:(nonnull NSString *)api andParameter:(nonnull NSDictionary *)parameter {
++ (nonnull NSString *)urlForScheme:(nonnull NSString *)scheme Host:(nonnull NSString *)host andPort:(NSUInteger)port andApi:(nonnull NSString *)api andParameter:(nullable NSDictionary *)parameter {
     
     return [NSString stringWithFormat:@"%@://%@:%@/%@%@", scheme, host, @(port), api, [SKYoutubeConnection queryForParameter:parameter]];
 }
 
-+ (nonnull NSString *)queryForParameter:(nonnull NSDictionary *)parameter {
++ (nonnull NSString *)queryForParameter:(nullable NSDictionary *)parameter {
     
     NSMutableString *mutableString = [[NSMutableString alloc] init];
     for(NSString *key in [parameter allKeys]) {
