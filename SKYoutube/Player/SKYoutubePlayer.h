@@ -8,6 +8,8 @@
 
 #import <SKUtils/SKPlayer.h>
 
-@interface SKYoutubePlayer : SKPlayer<NSString *>
+#import "SKYoutubeResource.h"
+
+@interface SKYoutubePlayer : SKPlayer<SKYoutubeResource *>
 
 @end

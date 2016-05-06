@@ -35,7 +35,7 @@
 #pragma mark - Abstract
 
 - (nullable NSError *)_setDataSource:(nonnull NSString *)source {
-    _youtubeId = source;
+    _youtubeId = ((SKYoutubeResource *)source).id;
     return nil;
 }
 

@@ -8,12 +8,15 @@
 
 #import "SKYoutubeResource.h"
 
+static NSString * const kKeyId = @"id";
 static NSString * const kKeySnippet = @"snippet";
 
 @implementation SKYoutubeResource
 
 - (nonnull instancetype)initWithDictionary:(nonnull NSDictionary *)dictionary {
     self = [super init];
+    
+    _id = [dictionary objectForKey:kKeyId];
     
     NSDictionary *snippetDictionary = [dictionary objectForKey:kKeySnippet];
     _snippet = [[SKYoutubeSnippet alloc] initWithDictionary:snippetDictionary];
