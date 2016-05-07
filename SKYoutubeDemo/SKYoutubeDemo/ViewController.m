@@ -41,8 +41,10 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    SKYoutubeResource *resource = [[SKYoutubeResource alloc] initWithId:@"zXDAYlhdkyg"];
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [_player setDataSource:@"Hgfqi7atWsk"];
+        [_player setDataSource:resource];
         [_player prepare];
         [_player start];
         

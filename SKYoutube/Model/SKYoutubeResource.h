@@ -20,6 +20,7 @@
 
 @property(nonatomic, copy, readonly, nullable) NSString *title;
 
+- (nonnull instancetype)initWithId:(nonnull NSString *)id;
 - (nonnull instancetype)initWithDictionary:(nonnull NSDictionary *)dictionary;
 
 @end
