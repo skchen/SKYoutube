@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SKYoutubeBrowser : NSObject
-
 typedef void (^SKExtendableListCallback)(NSArray  * _Nonnull list, BOOL finished);
+typedef void (^SKListCallback)(NSArray  * _Nonnull list);
 typedef void (^SKErrorCallback)(NSError * _Nonnull error);
 
-- (nonnull instancetype)initWithKey:(nonnull NSString *)key;
+@interface SKYoutubeBrowser : NSObject
 
-- (void)listMostPopular:(BOOL)refresh extend:(BOOL)extend success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure;
+- (nonnull instancetype)initWithKey:(nonnull NSString *)key andLocale:(nullable NSLocale *)locale;
+
+- (void)listVideoCategories:(BOOL)refresh success:(nonnull SKListCallback)success failure:(nonnull SKErrorCallback)failure;
+- (void)listMostPopular:(BOOL)refresh extend:(BOOL)extend category:(nullable NSString *)category success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure;
 
 @end
