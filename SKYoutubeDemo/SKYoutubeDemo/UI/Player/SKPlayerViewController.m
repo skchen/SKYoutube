@@ -6,11 +6,11 @@
 //  Copyright © 2016年 SK. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "SKPlayerViewController.h"
 
 @import SKYoutube;
 
-@interface ViewController ()
+@interface SKPlayerViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
 - (IBAction)onPlayPauseButtonPressed:(id)sender;
@@ -25,7 +25,7 @@
 
 @end
 
-@implementation ViewController
+@implementation SKPlayerViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,7 +41,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    SKYoutubeResource *resource = [[SKYoutubeResource alloc] initWithId:@"zXDAYlhdkyg"];
+    SKYoutubeResource *resource = [[SKYoutubeResource alloc] initWithId:@"d4mpj9YywIg"];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [_player setDataSource:resource];
@@ -51,6 +51,14 @@
         [self updatePlayPauseButton];
         [self updateDuration];
         [self updateProgressLater];
+    });
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [_player stop];
     });
 }
 

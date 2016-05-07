@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		82A48E9E1CDD7FC600D26FE5 /* SKPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A48E9D1CDD7FC600D26FE5 /* SKPlayerViewController.m */; };
+		82A48EA11CDD7FEC00D26FE5 /* SKBrowserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A48EA01CDD7FEC00D26FE5 /* SKBrowserTableViewController.m */; };
 		82C0D24E1CC892BB0025C530 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C0D24D1CC892BB0025C530 /* main.m */; };
 		82C0D2511CC892BB0025C530 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C0D2501CC892BB0025C530 /* AppDelegate.m */; };
-		82C0D2541CC892BB0025C530 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C0D2531CC892BB0025C530 /* ViewController.m */; };
 		82C0D2571CC892BB0025C530 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82C0D2551CC892BB0025C530 /* Main.storyboard */; };
 		82C0D2591CC892BB0025C530 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82C0D2581CC892BB0025C530 /* Assets.xcassets */; };
 		82C0D25C1CC892BB0025C530 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82C0D25A1CC892BB0025C530 /* LaunchScreen.storyboard */; };
@@ -18,12 +19,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		82A48E9C1CDD7FC600D26FE5 /* SKPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPlayerViewController.h; sourceTree = "<group>"; };
+		82A48E9D1CDD7FC600D26FE5 /* SKPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPlayerViewController.m; sourceTree = "<group>"; };
+		82A48E9F1CDD7FEC00D26FE5 /* SKBrowserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBrowserTableViewController.h; sourceTree = "<group>"; };
+		82A48EA01CDD7FEC00D26FE5 /* SKBrowserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKBrowserTableViewController.m; sourceTree = "<group>"; };
 		82C0D2491CC892BB0025C530 /* SKYoutubeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKYoutubeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82C0D24D1CC892BB0025C530 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		82C0D24F1CC892BB0025C530 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		82C0D2501CC892BB0025C530 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		82C0D2521CC892BB0025C530 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		82C0D2531CC892BB0025C530 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		82C0D2561CC892BB0025C530 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		82C0D2581CC892BB0025C530 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82C0D25B1CC892BB0025C530 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -45,6 +48,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		82A48E991CDD7FC600D26FE5 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				82A48E9A1CDD7FC600D26FE5 /* Browser */,
+				82A48E9B1CDD7FC600D26FE5 /* Player */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		82A48E9A1CDD7FC600D26FE5 /* Browser */ = {
+			isa = PBXGroup;
+			children = (
+				82A48E9F1CDD7FEC00D26FE5 /* SKBrowserTableViewController.h */,
+				82A48EA01CDD7FEC00D26FE5 /* SKBrowserTableViewController.m */,
+			);
+			path = Browser;
+			sourceTree = "<group>";
+		};
+		82A48E9B1CDD7FC600D26FE5 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				82A48E9C1CDD7FC600D26FE5 /* SKPlayerViewController.h */,
+				82A48E9D1CDD7FC600D26FE5 /* SKPlayerViewController.m */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
 		82C0D2401CC892BB0025C530 = {
 			isa = PBXGroup;
 			children = (
@@ -64,11 +94,10 @@
 		82C0D24B1CC892BB0025C530 /* SKYoutubeDemo */ = {
 			isa = PBXGroup;
 			children = (
+				82A48E991CDD7FC600D26FE5 /* UI */,
 				82C0D26A1CC895020025C530 /* Framework */,
 				82C0D24F1CC892BB0025C530 /* AppDelegate.h */,
 				82C0D2501CC892BB0025C530 /* AppDelegate.m */,
-				82C0D2521CC892BB0025C530 /* ViewController.h */,
-				82C0D2531CC892BB0025C530 /* ViewController.m */,
 				82C0D2551CC892BB0025C530 /* Main.storyboard */,
 				82C0D2581CC892BB0025C530 /* Assets.xcassets */,
 				82C0D25A1CC892BB0025C530 /* LaunchScreen.storyboard */,
@@ -183,8 +212,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82C0D2541CC892BB0025C530 /* ViewController.m in Sources */,
+				82A48E9E1CDD7FC600D26FE5 /* SKPlayerViewController.m in Sources */,
 				82C0D2511CC892BB0025C530 /* AppDelegate.m in Sources */,
+				82A48EA11CDD7FEC00D26FE5 /* SKBrowserTableViewController.m in Sources */,
 				82C0D24E1CC892BB0025C530 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
