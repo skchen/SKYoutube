@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *durationLabel;
 @property (weak, nonatomic) IBOutlet UISlider *progressSlider;
 - (IBAction)onProgressSliderValueChanged:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *screenView;
 
 @property (nonatomic, strong, nonnull) SKYoutubePlayer *player;
 
@@ -29,7 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _player = [[SKYoutubePlayer alloc] init];
+    _player = [[SKYoutubePlayer alloc] initWithView:_screenView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -41,7 +42,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    SKYoutubeResource *resource = [[SKYoutubeResource alloc] initWithId:@"d4mpj9YywIg"];
+    SKYoutubeResource *resource = [[SKYoutubeResource alloc] initWithId:@"T3E9Wjbq44E"];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [_player setDataSource:resource];

@@ -32,6 +32,16 @@
     return self;
 }
 
+- (nonnull instancetype)initWithView:(nonnull UIView *)view {
+    self = [super init];
+    
+    _innerPlayer = [[YTPlayerView alloc] initWithFrame:view.bounds];
+    _innerPlayer.delegate = self;
+    [view addSubview:_innerPlayer];
+    
+    return self;
+}
+
 #pragma mark - Abstract
 
 - (nullable NSError *)_setDataSource:(nonnull NSString *)source {
@@ -43,7 +53,8 @@
     _semaphore = dispatch_semaphore_create(0);
     
     NSDictionary *playerVars = @{
-                                 @"playsinline" : @1
+                                 @"playsinline" : @1,
+                                 @"origin" : @"http://localhost"
                                  };
     
     dispatch_async(dispatch_get_main_queue(), ^{

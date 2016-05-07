@@ -8,8 +8,11 @@
 
 #import <SKUtils/SKPlayer.h>
 
+#import <UIKit/UIKit.h>
 #import "SKYoutubeResource.h"
 
 @interface SKYoutubePlayer : SKPlayer<SKYoutubeResource *>
+
+- (nonnull instancetype)initWithView:(nonnull UIView *)view;
 
 @end
