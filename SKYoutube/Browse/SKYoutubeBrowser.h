@@ -16,6 +16,7 @@ typedef void (^SKErrorCallback)(NSError * _Nonnull error);
 
 - (nonnull instancetype)initWithKey:(nonnull NSString *)key andLocale:(nullable NSLocale *)locale;
 
+- (void)searchVideos:(BOOL)refresh extend:(BOOL)extend query:(nullable NSString *)query category:(nullable NSString *)category success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure;
 - (void)listVideoCategories:(BOOL)refresh success:(nonnull SKListCallback)success failure:(nonnull SKErrorCallback)failure;
 - (void)listMostPopular:(BOOL)refresh extend:(BOOL)extend category:(nullable NSString *)category success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure;
 

@@ -58,6 +58,9 @@
                                  };
     
     dispatch_async(dispatch_get_main_queue(), ^{
+#ifdef VERBOSE
+        NSLog(@"loadWithVideoId:%@", _youtubeId);
+#endif
         [_innerPlayer loadWithVideoId:_youtubeId playerVars:playerVars];
     });
     
@@ -110,10 +113,28 @@
 #pragma mark - YTPlayerViewDelegate
 
 - (void)playerViewDidBecomeReady:(nonnull YTPlayerView *)playerView {
+#ifdef VERBOSE
+    NSLog(@"playerViewDidBecomeReady");
+#endif
     dispatch_semaphore_signal(_semaphore);
 }
 
+- (void)playerView:(YTPlayerView *)playerView didChangeToState:(YTPlayerState)state {
+#ifdef VERBOSE
+    NSLog(@"didChangeToState:%@", @(state));
+#endif
+}
+
+- (void)playerView:(YTPlayerView *)playerView receivedError:(YTPlayerError)error {
+#ifdef VERBOSE
+    NSLog(@"receivedError:%@", @(error));
+#endif
+}
+
 - (void)playerView:(YTPlayerView *)playerView didPlayTime:(float)playTime {
+#ifdef VERBOSE
+    NSLog(@"didPlayTime: %@", @(playTime));
+#endif
     _progress = round(playTime*1000);
 }
 

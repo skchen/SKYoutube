@@ -12,6 +12,7 @@
 
 #import "SKYoutubeExtendableList.h"
 
+static NSString const * kCacheKeySearch = @"search";
 static NSString const * kCacheKeyVideoCategories = @"videoCategories";
 static NSString const * kCacheKeyMostPopular = @"mostPopular";
 
@@ -41,6 +42,45 @@ static NSString const * kCacheKeyMostPopular = @"mostPopular";
     }
     
     return self;
+}
+
+- (void)searchVideos:(BOOL)refresh extend:(BOOL)extend query:(nullable NSString *)query category:(nullable NSString *)category success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure {
+    
+    NSMutableString *cacheKey = [[NSMutableString alloc] initWithFormat:@"%@", kCacheKeySearch];
+    
+    if(query) {
+        [cacheKey appendString:query];
+    }
+    
+    if(category) {
+        [cacheKey appendString:category];
+    }
+    
+    dispatch_async(_workerQueue, ^{
+        SKYoutubeExtendableList *cachedExtendableList = [_cache objectForKey:cacheKey];
+        
+        if( refresh || (!cachedExtendableList) ) {
+            cachedExtendableList = [[SKYoutubeExtendableList alloc] init];
+            [_cache setObject:cachedExtendableList forKey:cacheKey];
+        }
+        
+        if( extend && !cachedExtendableList.finished ) {
+            SKYoutubePagedListResponse *response = [SKYoutubeBrowser searchVideos:_key query:query part:@"snippet" category:category pageSize:50 pageCode:cachedExtendableList.nextPageToken];
+            
+            if(response) {
+                [cachedExtendableList addObjectsByResponse:response];
+            } else {
+                dispatch_async(_callbackQueue, ^{
+                    failure([NSError errorWithDomain:@"Unable to get response" code:0 userInfo:nil]);
+                });
+                return;
+            }
+        }
+        
+        dispatch_async(_callbackQueue, ^{
+            success(cachedExtendableList.objects, cachedExtendableList.finished);
+        });
+    });
 }
 
 - (void)listVideoCategories:(BOOL)refresh success:(nonnull SKListCallback)success failure:(nonnull SKErrorCallback)failure {
@@ -102,6 +142,32 @@ static NSString const * kCacheKeyMostPopular = @"mostPopular";
             success(cachedExtendableList.objects, cachedExtendableList.finished);
         });
     });
+}
+
++ (nonnull SKYoutubePagedListResponse *)searchVideos:(nonnull NSString *)key query:(nullable NSString *)query part:(nonnull NSString *)part category:(nullable NSString *)category pageSize:(NSUInteger)pageSize pageCode:(nullable NSString *)pageCode {
+    
+    NSDictionary *basicParameter = @{
+                                     @"key" : key,
+                                     @"part" : part,
+                                     @"type" : @"video",
+                                     @"maxResults" : @(pageSize)
+                                     };
+    
+    NSMutableDictionary *parameter = [[NSMutableDictionary alloc] initWithDictionary:basicParameter];
+    
+    if(pageCode) {
+        [parameter setObject:pageCode forKey:@"pageToken"];
+    }
+    
+    if(category) {
+        [parameter setObject:category forKey:@"videoCategoryId"];
+    }
+    
+    if(query) {
+        [parameter setObject:query forKey:@"q"];
+    }
+    
+    return (SKYoutubePagedListResponse *)[SKYoutubeConnection objectForApi:@"youtube/v3/search" andParameter:parameter];
 }
 
 + (nonnull SKYoutubeListResponse *)listVideoCategories:(nonnull NSString *)key part:(nonnull NSString *)part locale:(nonnull NSLocale *)locale {
