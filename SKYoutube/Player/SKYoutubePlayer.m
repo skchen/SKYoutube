@@ -12,6 +12,8 @@
 
 #import "YTPlayerView.h"
 
+#define VERBOSE
+
 @interface SKYoutubePlayer () <YTPlayerViewDelegate>
 
 @property(nonatomic, strong, nonnull) YTPlayerView *innerPlayer;

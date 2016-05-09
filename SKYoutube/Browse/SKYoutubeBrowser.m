@@ -46,17 +46,18 @@ typedef SKYoutubePagedListResponse* (^SKExtendableListRequest)(NSString * _Nulla
     return self;
 }
 
+- (void)listChannels:(BOOL)refresh extend:(BOOL)extend category:(nullable NSString *)category success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure {
+    
+    NSString *cacheKey = [self cacheKeyWithElements:2, kCacheKeySearch, category];
+    
+    [self getPagedList:refresh extend:extend cacheKey:cacheKey request:^SKYoutubePagedListResponse *(NSString * _Nullable pageCode) {
+        return [SKYoutubeBrowser listChannels:_key part:@"snippet" category:category pageSize:50 pageCode:pageCode];
+    } success:success failure:failure];
+}
+
 - (void)searchVideos:(BOOL)refresh extend:(BOOL)extend query:(nullable NSString *)query category:(nullable NSString *)category success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure {
     
-    NSMutableString *cacheKey = [[NSMutableString alloc] initWithFormat:@"%@", kCacheKeySearch];
-    
-    if(query) {
-        [cacheKey appendString:query];
-    }
-    
-    if(category) {
-        [cacheKey appendString:category];
-    }
+    NSString *cacheKey = [self cacheKeyWithElements:3, kCacheKeySearch, query, category];
     
     [self getPagedList:refresh extend:extend cacheKey:cacheKey request:^SKYoutubePagedListResponse *(NSString * _Nullable pageCode) {
         return [SKYoutubeBrowser searchVideos:_key query:query part:@"snippet" category:category pageSize:50 pageCode:pageCode];
@@ -90,12 +91,7 @@ typedef SKYoutubePagedListResponse* (^SKExtendableListRequest)(NSString * _Nulla
 
 - (void)listMostPopular:(BOOL)refresh extend:(BOOL)extend category:(nullable NSString *)category success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure {
     
-    NSString *cacheKey;
-    if(category) {
-        cacheKey = [NSString stringWithFormat:@"%@%@", kCacheKeyMostPopular, category];
-    } else {
-        cacheKey = [NSString stringWithFormat:@"%@", kCacheKeyMostPopular];
-    }
+    NSString *cacheKey = [self cacheKeyWithElements:2, kCacheKeyMostPopular, category];
     
     [self getPagedList:refresh extend:extend cacheKey:cacheKey request:^SKYoutubePagedListResponse *(NSString * _Nullable pageCode) {
         return [SKYoutubeBrowser listVideos:_key part:@"snippet" chart:@"mostPopular" category:category pageSize:50 pageCode:pageCode];
@@ -129,6 +125,49 @@ typedef SKYoutubePagedListResponse* (^SKExtendableListRequest)(NSString * _Nulla
             success(cachedExtendableList.objects, cachedExtendableList.finished);
         });
     });
+}
+
+
+- (nonnull NSString *)cacheKeyWithElements:(NSUInteger)numberOfElements, ... {
+    NSMutableString *newContentString = [NSMutableString string];
+    
+    va_list args;
+    va_start(args, numberOfElements);
+    for(int i=0; i<numberOfElements; i++) {
+        if(i>0) {
+            [newContentString appendString:@"/"];
+        }
+        
+        NSString *arg = va_arg(args, NSString*);
+        if(arg) {
+            [newContentString appendString:arg];
+        }
+    }
+    va_end(args);
+    
+    return newContentString;
+}
+
++ (nonnull SKYoutubePagedListResponse *)listChannels:(nonnull NSString *)key part:(nonnull NSString *)part category:(nullable NSString *)category pageSize:(NSUInteger)pageSize pageCode:(nullable NSString *)pageCode {
+    
+    NSDictionary *basicParameter = @{
+                                     @"key" : key,
+                                     @"part" : part,
+                                     @"type" : @"video",
+                                     @"maxResults" : @(pageSize)
+                                     };
+    
+    NSMutableDictionary *parameter = [[NSMutableDictionary alloc] initWithDictionary:basicParameter];
+    
+    if(pageCode) {
+        [parameter setObject:pageCode forKey:@"pageToken"];
+    }
+    
+    if(category) {
+        [parameter setObject:category forKey:@"categoryId"];
+    }
+    
+    return (SKYoutubePagedListResponse *)[SKYoutubeConnection objectForApi:@"youtube/v3/channels" andParameter:parameter];
 }
 
 + (nonnull SKYoutubePagedListResponse *)searchVideos:(nonnull NSString *)key query:(nullable NSString *)query part:(nonnull NSString *)part category:(nullable NSString *)category pageSize:(NSUInteger)pageSize pageCode:(nullable NSString *)pageCode {

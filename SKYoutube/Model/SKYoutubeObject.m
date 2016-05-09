@@ -11,6 +11,8 @@
 static NSString * const kKeyKind = @"kind";
 static NSString * const kKeyTag = @"etag";
 
+static NSString * const kKindChannelListResponse = @"youtube#channelListResponse";
+
 static NSString * const kKindSearchListResponse = @"youtube#searchListResponse";
 static NSString * const kKindVideoCategoryListResponse = @"youtube#videoCategoryListResponse";
 static NSString * const kKindVideoListResponse = @"youtube#videoListResponse";
@@ -18,13 +20,16 @@ static NSString * const kKindVideoListResponse = @"youtube#videoListResponse";
 static NSString * const kClassListResponse = @"SKYoutubeListResponse";
 static NSString * const kClassPagedListResponse = @"SKYoutubePagedListResponse";
 
+static NSString * const kClassResource = @"SKYoutubeResource";
+
+static NSString * const kKindChannel = @"youtube#channel";
+
 static NSString * const kKindSearchResult = @"youtube#searchResult";
 
 static NSString * const kKindVideoCategory = @"youtube#videoCategory";
 static NSString * const kClassVideoCategory = @"SKYoutubeVideoCategory";
 
 static NSString * const kKindVideo = @"youtube#video";
-static NSString * const kClassVideo = @"SKYoutubeResource";
 
 @implementation SKYoutubeObject
 
@@ -42,12 +47,14 @@ static NSString * const kClassVideo = @"SKYoutubeResource";
 
 + (nullable NSString *)classNameForKind:(nonnull NSString *)kind {
     NSDictionary *mapping = @{
+                              kKindChannelListResponse : kClassPagedListResponse,
                               kKindSearchListResponse : kClassPagedListResponse,
                               kKindVideoCategoryListResponse : kClassListResponse,
                               kKindVideoListResponse : kClassPagedListResponse,
                               
+                              kKindChannel : kClassResource,
                               kKindVideoCategory : kClassVideoCategory,
-                              kKindVideo : kClassVideo
+                              kKindVideo : kClassResource
                               };
     
     return [mapping objectForKey:kind];
