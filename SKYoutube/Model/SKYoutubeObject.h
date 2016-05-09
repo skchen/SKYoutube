@@ -23,6 +23,9 @@
 - (nonnull instancetype)initWithDictionary:(nonnull NSDictionary *)dictionary;
 
 - (BOOL)isChannel;
+- (BOOL)isPlaylist;
+- (BOOL)isPlaylistItem;
+- (BOOL)isSearchResult;
 - (BOOL)isVideo;
 
 @end

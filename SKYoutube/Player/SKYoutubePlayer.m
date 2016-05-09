@@ -12,7 +12,7 @@
 
 #import "YTPlayerView.h"
 
-#define VERBOSE
+// #define VERBOSE
 
 @interface SKYoutubePlayer () <YTPlayerViewDelegate>
 
@@ -47,7 +47,7 @@
 #pragma mark - Abstract
 
 - (nullable NSError *)_setDataSource:(nonnull NSString *)source {
-    _youtubeId = ((SKYoutubeResource *)source).id;
+    _youtubeId = ((SKYoutubeResource *)source).videoId;
     return nil;
 }
 

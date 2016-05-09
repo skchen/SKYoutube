@@ -26,12 +26,7 @@ static NSString * const kIdKeyId = @"videoId";
 - (nonnull instancetype)initWithDictionary:(nonnull NSDictionary *)dictionary {
     self = [super initWithDictionary:dictionary];
     
-    id idObject = [dictionary objectForKey:kKeyId];
-    if([idObject isKindOfClass:[NSDictionary class]]) {
-        _id = [idObject objectForKey:kIdKeyId];
-    } else {
-        _id = [dictionary objectForKey:kKeyId];
-    }
+    _id = [dictionary objectForKey:kKeyId];
     
     NSDictionary *snippetDictionary = [dictionary objectForKey:kKeySnippet];
     _snippet = [[SKYoutubeSnippet alloc] initWithDictionary:snippetDictionary];
@@ -39,8 +34,22 @@ static NSString * const kIdKeyId = @"videoId";
     return self;
 }
 
+- (BOOL)isVideo {
+    return ([self videoId]!=nil);
+}
+
 - (nullable NSString *)title {
     return _snippet.title;
+}
+
+- (nullable NSString *)videoId {
+    if([super isVideo]) {
+        return _id;
+    } else if([super isSearchResult]) {
+        return [_id objectForKey:kIdKeyId];
+    }
+    
+    return [_snippet videoId];
 }
 
 - (nonnull NSString *)description {

@@ -12,37 +12,30 @@ static NSString * const kKeyKind = @"kind";
 static NSString * const kKeyTag = @"etag";
 
 static NSString * const kKindChannelListResponse = @"youtube#channelListResponse";
-
 static NSString * const kKindGuideCategoryListResponse = @"youtube#guideCategoryListResponse";
-static NSString * const kKindGuidePlaylistListResponse = @"youtube#playlistListResponse";
+static NSString * const kKindPlaylistListResponse = @"youtube#playlistListResponse";
+static NSString * const kKindPlaylistItemListResponse = @"youtube#playlistItemListResponse";
 static NSString * const kKindSearchListResponse = @"youtube#searchListResponse";
 static NSString * const kKindVideoCategoryListResponse = @"youtube#videoCategoryListResponse";
 static NSString * const kKindVideoListResponse = @"youtube#videoListResponse";
 
-static NSString * const kClassListResponse = @"SKYoutubeListResponse";
-static NSString * const kClassPagedListResponse = @"SKYoutubePagedListResponse";
-
-static NSString * const kClassResource = @"SKYoutubeResource";
-
 static NSString * const kKindChannel = @"youtube#channel";
 static NSString * const kKindGuideCategory = @"youtube#guideCategory";
 static NSString * const kKindPlaylist = @"youtube#playlist";
+static NSString * const kKindPlaylistItem = @"youtube#playlistItem";
 static NSString * const kKindSearchResult = @"youtube#searchResult";
-
 static NSString * const kKindVideoCategory = @"youtube#videoCategory";
-static NSString * const kClassVideoCategory = @"SKYoutubeVideoCategory";
-
 static NSString * const kKindVideo = @"youtube#video";
+
+static NSString * const kClassListResponse = @"SKYoutubeListResponse";
+static NSString * const kClassPagedListResponse = @"SKYoutubePagedListResponse";
+static NSString * const kClassResource = @"SKYoutubeResource";
 
 @implementation SKYoutubeObject
 
 + (nullable NSString *)classNameForDictioanry:(nonnull NSDictionary *)dictionary {
     NSString *kind = [dictionary objectForKey:kKeyKind];
     if(kind) {
-        if([kind isEqualToString:kKindSearchResult]) {
-            kind = kKindVideo;
-        }
-        
         return [SKYoutubeObject classNameForKind:kind];
     }
     return nil;
@@ -52,7 +45,8 @@ static NSString * const kKindVideo = @"youtube#video";
     NSDictionary *mapping = @{
                               kKindChannelListResponse : kClassPagedListResponse,
                               kKindGuideCategoryListResponse : kClassListResponse,
-                              kKindGuidePlaylistListResponse : kClassPagedListResponse,
+                              kKindPlaylistListResponse : kClassPagedListResponse,
+                              kKindPlaylistItemListResponse : kClassPagedListResponse,
                               kKindSearchListResponse : kClassPagedListResponse,
                               kKindVideoCategoryListResponse : kClassListResponse,
                               kKindVideoListResponse : kClassPagedListResponse,
@@ -60,7 +54,9 @@ static NSString * const kKindVideo = @"youtube#video";
                               kKindChannel : kClassResource,
                               kKindGuideCategory : kClassResource,
                               kKindPlaylist : kClassResource,
-                              kKindVideoCategory : kClassVideoCategory,
+                              kKindPlaylistItem : kClassResource,
+                              kKindSearchResult : kClassResource,
+                              kKindVideoCategory : kClassResource,
                               kKindVideo : kClassResource
                               };
     
@@ -106,6 +102,18 @@ static NSString * const kKindVideo = @"youtube#video";
 
 - (BOOL)isChannel {
     return [_kind isEqualToString:kKindChannel];
+}
+
+- (BOOL)isPlaylist {
+    return [_kind isEqualToString:kKindPlaylist];
+}
+
+- (BOOL)isPlaylistItem {
+    return [_kind isEqualToString:kKindPlaylistItem];
+}
+
+- (BOOL)isSearchResult {
+    return [_kind isEqualToString:kKindSearchResult];
 }
 
 - (BOOL)isVideo {

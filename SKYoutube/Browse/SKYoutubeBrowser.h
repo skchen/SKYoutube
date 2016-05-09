@@ -25,6 +25,8 @@ typedef void (^SKErrorCallback)(NSError * _Nonnull error);
 - (void)listGuideCategories:(BOOL)refresh success:(nonnull SKListCallback)success failure:(nonnull SKErrorCallback)failure;
 - (void)searchVideos:(BOOL)refresh extend:(BOOL)extend query:(nullable NSString *)query category:(nullable NSString *)category success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure;
 - (void)listVideoCategories:(BOOL)refresh success:(nonnull SKListCallback)success failure:(nonnull SKErrorCallback)failure;
+
 - (void)listMostPopular:(BOOL)refresh extend:(BOOL)extend category:(nullable NSString *)category success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure;
+- (void)listVideos:(BOOL)refresh extend:(BOOL)extend playlist:(nonnull SKYoutubeResource *)playlist success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure;
 
 @end

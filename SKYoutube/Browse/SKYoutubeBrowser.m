@@ -17,6 +17,7 @@
 static NSString * const kCacheKeyGuideCategories = @"guideCategories";
 static NSString * const kCacheKeySearch = @"search";
 static NSString * const kCacheKeyPlaylist = @"playlist";
+static NSString * const kCacheKeyPlaylistItem = @"playlistItems";
 static NSString * const kCacheKeyVideoCategories = @"videoCategories";
 static NSString * const kCacheKeyMostPopular = @"mostPopular";
 
@@ -97,6 +98,15 @@ typedef SKYoutubeListResponse* (^SKListRequest)(void);
     
     [self youtubePagedList:refresh extend:extend cacheKey:cacheKey request:^SKYoutubePagedListResponse *(NSString * _Nullable pageCode) {
         return [SKYoutubeBrowser listVideos:_key part:@"snippet" chart:@"mostPopular" category:category pageSize:50 pageCode:pageCode];
+    } success:success failure:failure];
+}
+
+- (void)listVideos:(BOOL)refresh extend:(BOOL)extend playlist:(nonnull SKYoutubeResource *)playlist success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure {
+
+    NSString *cacheKey = [self cacheKeyWithElements:2, kCacheKeyPlaylistItem, playlist.id];
+    
+    [self youtubePagedList:refresh extend:extend cacheKey:cacheKey request:^SKYoutubePagedListResponse *(NSString * _Nullable pageCode) {
+        return [SKYoutubeBrowser listPlaylistItems:_key part:@"snippet" playlistId:playlist.id pageSize:50 pageCode:pageCode];
     } success:success failure:failure];
 }
 
@@ -226,6 +236,24 @@ typedef SKYoutubeListResponse* (^SKListRequest)(void);
     }
     
     return (SKYoutubePagedListResponse *)[SKYoutubeConnection objectForApi:@"youtube/v3/playlists" andParameter:parameter];
+}
+
++ (nonnull SKYoutubePagedListResponse *)listPlaylistItems:(nonnull NSString *)key part:(nonnull NSString *)part playlistId:(nonnull NSString *)playlistId pageSize:(NSUInteger)pageSize pageCode:(nullable NSString *)pageCode {
+    
+    NSDictionary *basicParameter = @{
+                                     @"key" : key,
+                                     @"part" : part,
+                                     @"playlistId" : playlistId,
+                                     @"maxResults" : @(pageSize)
+                                     };
+    
+    NSMutableDictionary *parameter = [[NSMutableDictionary alloc] initWithDictionary:basicParameter];
+    
+    if(pageCode) {
+        [parameter setObject:pageCode forKey:@"pageToken"];
+    }
+    
+    return (SKYoutubePagedListResponse *)[SKYoutubeConnection objectForApi:@"youtube/v3/playlistItems" andParameter:parameter];
 }
 
 + (nonnull SKYoutubePagedListResponse *)searchVideos:(nonnull NSString *)key query:(nullable NSString *)query part:(nonnull NSString *)part category:(nullable NSString *)category pageSize:(NSUInteger)pageSize pageCode:(nullable NSString *)pageCode {

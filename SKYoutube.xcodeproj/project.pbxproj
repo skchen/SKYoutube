@@ -26,8 +26,6 @@
 		823E160F1CDC2C1B003C59A5 /* SKYoutubeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 823E160D1CDC2C1B003C59A5 /* SKYoutubeObject.m */; };
 		823E16121CDC2CF2003C59A5 /* SKYoutubeResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 823E16101CDC2CF2003C59A5 /* SKYoutubeResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		823E16131CDC2CF2003C59A5 /* SKYoutubeResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 823E16111CDC2CF2003C59A5 /* SKYoutubeResource.m */; };
-		823E16161CDC2D6D003C59A5 /* SKYoutubeVideoCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = 823E16141CDC2D6D003C59A5 /* SKYoutubeVideoCategory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		823E16171CDC2D6D003C59A5 /* SKYoutubeVideoCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 823E16151CDC2D6D003C59A5 /* SKYoutubeVideoCategory.m */; };
 		82C0D22A1CC891D70025C530 /* SKYoutube.h in Headers */ = {isa = PBXBuildFile; fileRef = 82C0D2291CC891D70025C530 /* SKYoutube.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82C0D2311CC891D70025C530 /* SKYoutube.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C0D2261CC891D70025C530 /* SKYoutube.framework */; };
 		82C0D2361CC891D70025C530 /* SKYoutubeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C0D2351CC891D70025C530 /* SKYoutubeTests.m */; };
@@ -97,8 +95,6 @@
 		823E160D1CDC2C1B003C59A5 /* SKYoutubeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYoutubeObject.m; sourceTree = "<group>"; };
 		823E16101CDC2CF2003C59A5 /* SKYoutubeResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKYoutubeResource.h; sourceTree = "<group>"; };
 		823E16111CDC2CF2003C59A5 /* SKYoutubeResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYoutubeResource.m; sourceTree = "<group>"; };
-		823E16141CDC2D6D003C59A5 /* SKYoutubeVideoCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKYoutubeVideoCategory.h; sourceTree = "<group>"; };
-		823E16151CDC2D6D003C59A5 /* SKYoutubeVideoCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYoutubeVideoCategory.m; sourceTree = "<group>"; };
 		82C0D2261CC891D70025C530 /* SKYoutube.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SKYoutube.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82C0D2291CC891D70025C530 /* SKYoutube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKYoutube.h; sourceTree = "<group>"; };
 		82C0D22B1CC891D70025C530 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -182,8 +178,6 @@
 				823E160D1CDC2C1B003C59A5 /* SKYoutubeObject.m */,
 				823E16101CDC2CF2003C59A5 /* SKYoutubeResource.h */,
 				823E16111CDC2CF2003C59A5 /* SKYoutubeResource.m */,
-				823E16141CDC2D6D003C59A5 /* SKYoutubeVideoCategory.h */,
-				823E16151CDC2D6D003C59A5 /* SKYoutubeVideoCategory.m */,
 				823E16001CDB8EE4003C59A5 /* SKYoutubeSnippet.h */,
 				823E16011CDB8EE4003C59A5 /* SKYoutubeSnippet.m */,
 			);
@@ -279,7 +273,6 @@
 				823E15F21CDB8A42003C59A5 /* SKYoutubeConnection.h in Headers */,
 				823E160E1CDC2C1B003C59A5 /* SKYoutubeObject.h in Headers */,
 				823E16021CDB8EE4003C59A5 /* SKYoutubeSnippet.h in Headers */,
-				823E16161CDC2D6D003C59A5 /* SKYoutubeVideoCategory.h in Headers */,
 				823E15E71CDB7C61003C59A5 /* SKYoutubeBrowser.h in Headers */,
 				823E16121CDC2CF2003C59A5 /* SKYoutubeResource.h in Headers */,
 				823E15FE1CDB8D49003C59A5 /* SKYoutubePagedListResponse.h in Headers */,
@@ -426,7 +419,6 @@
 				82C0D2671CC8949A0025C530 /* SKYoutubePlayer.m in Sources */,
 				823E15FF1CDB8D49003C59A5 /* SKYoutubePagedListResponse.m in Sources */,
 				823E15F31CDB8A42003C59A5 /* SKYoutubeConnection.m in Sources */,
-				823E16171CDC2D6D003C59A5 /* SKYoutubeVideoCategory.m in Sources */,
 				823E15F71CDB8AAE003C59A5 /* SKYoutubeResponse.m in Sources */,
 				823E16131CDC2CF2003C59A5 /* SKYoutubeResource.m in Sources */,
 				823E16071CDB9F48003C59A5 /* SKYoutubeExtendableList.m in Sources */,

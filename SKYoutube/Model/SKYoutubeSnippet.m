@@ -10,6 +10,10 @@
 
 static NSString * const kKeySnippetTitle = @"title";
 
+static NSString * const kKeySnippetResourceId = @"resourceId";
+
+static NSString * const kResourceIdVideoId = @"videoId";
+
 @interface SKYoutubeSnippet ()
 
 @property(nonatomic, strong, readonly, nonnull) NSDictionary *dictionary;
@@ -26,8 +30,13 @@ static NSString * const kKeySnippetTitle = @"title";
     return self;
 }
 
-- (nonnull NSString *)title {
+- (nullable NSString *)title {
     return [_dictionary objectForKey:kKeySnippetTitle];
+}
+
+- (nullable NSString *)videoId {
+    NSDictionary *resourceId = [_dictionary objectForKey:kKeySnippetResourceId];
+    return [resourceId objectForKey:kResourceIdVideoId];
 }
 
 @end

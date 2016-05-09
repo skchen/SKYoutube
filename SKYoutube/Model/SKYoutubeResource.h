@@ -12,13 +12,14 @@
 
 @interface SKYoutubeResource : SKYoutubeObject {
 @protected
-    NSString *_id;
+    id _id;
 }
 
-@property(nonatomic, copy, readonly, nonnull) NSString *id;
+@property(nonatomic, copy, readonly, nonnull) id id;
 @property(nonatomic, copy, readonly, nullable) SKYoutubeSnippet *snippet;
 
 @property(nonatomic, copy, readonly, nullable) NSString *title;
+@property(nonatomic, copy, readonly, nullable) NSString *videoId;
 
 - (nonnull instancetype)initWithId:(nonnull NSString *)id;
 - (nonnull instancetype)initWithDictionary:(nonnull NSDictionary *)dictionary;
