@@ -13,6 +13,8 @@ static NSString * const kKeyTag = @"etag";
 
 static NSString * const kKindChannelListResponse = @"youtube#channelListResponse";
 
+static NSString * const kKindGuideCategoryListResponse = @"youtube#guideCategoryListResponse";
+
 static NSString * const kKindSearchListResponse = @"youtube#searchListResponse";
 static NSString * const kKindVideoCategoryListResponse = @"youtube#videoCategoryListResponse";
 static NSString * const kKindVideoListResponse = @"youtube#videoListResponse";
@@ -23,7 +25,7 @@ static NSString * const kClassPagedListResponse = @"SKYoutubePagedListResponse";
 static NSString * const kClassResource = @"SKYoutubeResource";
 
 static NSString * const kKindChannel = @"youtube#channel";
-
+static NSString * const kKindGuideCategory = @"youtube#guideCategory";
 static NSString * const kKindSearchResult = @"youtube#searchResult";
 
 static NSString * const kKindVideoCategory = @"youtube#videoCategory";
@@ -48,16 +50,24 @@ static NSString * const kKindVideo = @"youtube#video";
 + (nullable NSString *)classNameForKind:(nonnull NSString *)kind {
     NSDictionary *mapping = @{
                               kKindChannelListResponse : kClassPagedListResponse,
+                              kKindGuideCategoryListResponse : kClassListResponse,
                               kKindSearchListResponse : kClassPagedListResponse,
                               kKindVideoCategoryListResponse : kClassListResponse,
                               kKindVideoListResponse : kClassPagedListResponse,
                               
                               kKindChannel : kClassResource,
+                              kKindGuideCategory : kClassResource,
                               kKindVideoCategory : kClassVideoCategory,
                               kKindVideo : kClassResource
                               };
     
-    return [mapping objectForKey:kind];
+    NSString *className = [mapping objectForKey:kind];
+    
+    if(!className) {
+        NSLog(@"Unrecognized kind: %@", kind);
+    }
+    
+    return className;
 }
 
 + (nullable instancetype)objectWithDictionary:(nonnull NSDictionary *)dictionary {

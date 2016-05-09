@@ -9,6 +9,7 @@
 #import "SKYoutubeResource.h"
 
 static NSString * const kKeyId = @"id";
+static NSString * const kKeyTitle = @"title";
 static NSString * const kKeySnippet = @"snippet";
 
 static NSString * const kIdKeyId = @"videoId";
@@ -18,7 +19,7 @@ static NSString * const kIdKeyId = @"videoId";
 - (nonnull instancetype)initWithId:(nonnull NSString *)id {
     self = [super init];
     _id = id;
-    _snippet = [[SKYoutubeSnippet alloc] initWithDictionary:@{@"title": id}];
+    _snippet = [[SKYoutubeSnippet alloc] initWithDictionary:@{kKeyTitle: id}];
     return self;
 }
 
@@ -40,6 +41,14 @@ static NSString * const kIdKeyId = @"videoId";
 
 - (nullable NSString *)title {
     return _snippet.title;
+}
+
+- (nonnull NSString *)description {
+    NSDictionary *info = @{
+                           kKeyId : _id,
+                           kKeyTitle : [self title]
+                           };
+    return info.description;
 }
 
 @end

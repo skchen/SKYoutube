@@ -12,11 +12,13 @@
 
 #import "SKYoutubeExtendableList.h"
 
-static NSString const * kCacheKeySearch = @"search";
-static NSString const * kCacheKeyVideoCategories = @"videoCategories";
-static NSString const * kCacheKeyMostPopular = @"mostPopular";
+static NSString * const kCacheKeyGuideCategories = @"guideCategories";
+static NSString * const kCacheKeySearch = @"search";
+static NSString * const kCacheKeyVideoCategories = @"videoCategories";
+static NSString * const kCacheKeyMostPopular = @"mostPopular";
 
 typedef SKYoutubePagedListResponse* (^SKExtendableListRequest)(NSString * _Nullable pageCode);
+typedef SKYoutubeListResponse* (^SKListRequest)(void);
 
 @interface SKYoutubeBrowser ()
 
@@ -46,11 +48,17 @@ typedef SKYoutubePagedListResponse* (^SKExtendableListRequest)(NSString * _Nulla
     return self;
 }
 
+- (void)listGuideCategories:(BOOL)refresh success:(nonnull SKListCallback)success failure:(nonnull SKErrorCallback)failure {
+    [self youtubeList:refresh cacheKey:kCacheKeyGuideCategories request:^SKYoutubeListResponse *{
+        return [SKYoutubeBrowser listGuideCategories:_key part:@"snippet" locale:_locale];
+    } success:success failure:failure];
+}
+
 - (void)listChannels:(BOOL)refresh extend:(BOOL)extend category:(nullable NSString *)category success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure {
     
     NSString *cacheKey = [self cacheKeyWithElements:2, kCacheKeySearch, category];
     
-    [self getPagedList:refresh extend:extend cacheKey:cacheKey request:^SKYoutubePagedListResponse *(NSString * _Nullable pageCode) {
+    [self youtubePagedList:refresh extend:extend cacheKey:cacheKey request:^SKYoutubePagedListResponse *(NSString * _Nullable pageCode) {
         return [SKYoutubeBrowser listChannels:_key part:@"snippet" category:category pageSize:50 pageCode:pageCode];
     } success:success failure:failure];
 }
@@ -59,22 +67,38 @@ typedef SKYoutubePagedListResponse* (^SKExtendableListRequest)(NSString * _Nulla
     
     NSString *cacheKey = [self cacheKeyWithElements:3, kCacheKeySearch, query, category];
     
-    [self getPagedList:refresh extend:extend cacheKey:cacheKey request:^SKYoutubePagedListResponse *(NSString * _Nullable pageCode) {
+    [self youtubePagedList:refresh extend:extend cacheKey:cacheKey request:^SKYoutubePagedListResponse *(NSString * _Nullable pageCode) {
         return [SKYoutubeBrowser searchVideos:_key query:query part:@"snippet" category:category pageSize:50 pageCode:pageCode];
     } success:success failure:failure];
 }
 
 - (void)listVideoCategories:(BOOL)refresh success:(nonnull SKListCallback)success failure:(nonnull SKErrorCallback)failure {
+    
+    [self youtubeList:refresh cacheKey:kCacheKeyVideoCategories request:^SKYoutubeListResponse *{
+        return [SKYoutubeBrowser listVideoCategories:_key part:@"snippet" locale:_locale];
+    } success:success failure:failure];
+}
 
+- (void)listMostPopular:(BOOL)refresh extend:(BOOL)extend category:(nullable NSString *)category success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure {
+    
+    NSString *cacheKey = [self cacheKeyWithElements:2, kCacheKeyMostPopular, category];
+    
+    [self youtubePagedList:refresh extend:extend cacheKey:cacheKey request:^SKYoutubePagedListResponse *(NSString * _Nullable pageCode) {
+        return [SKYoutubeBrowser listVideos:_key part:@"snippet" chart:@"mostPopular" category:category pageSize:50 pageCode:pageCode];
+    } success:success failure:failure];
+}
+
+- (void)youtubeList:(BOOL)refresh cacheKey:(NSString *)cacheKey request:(SKListRequest)request success:(nonnull SKListCallback)success failure:(nonnull SKErrorCallback)failure {
+    
     dispatch_async(_workerQueue, ^{
-        NSArray *videoCategories = [_cache objectForKey:kCacheKeyVideoCategories];
+        NSArray *cachedList = [_cache objectForKey:cacheKey];
         
-        if( refresh || (!videoCategories) ) {
-            SKYoutubeListResponse *response = [SKYoutubeBrowser listVideoCategories:_key part:@"snippet" locale:_locale];
+        if( refresh || (!cachedList) ) {
+            SKYoutubeListResponse *response = request();
             
             if(response) {
-                videoCategories = response.items;
-                [_cache setObject:videoCategories forKey:kCacheKeyVideoCategories];
+                cachedList = response.items;
+                [_cache setObject:cachedList forKey:kCacheKeyVideoCategories];
             } else {
                 dispatch_async(_callbackQueue, ^{
                     failure([NSError errorWithDomain:@"Unable to get response" code:0 userInfo:nil]);
@@ -84,21 +108,12 @@ typedef SKYoutubePagedListResponse* (^SKExtendableListRequest)(NSString * _Nulla
         }
         
         dispatch_async(_callbackQueue, ^{
-            success(videoCategories);
+            success(cachedList);
         });
     });
 }
 
-- (void)listMostPopular:(BOOL)refresh extend:(BOOL)extend category:(nullable NSString *)category success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure {
-    
-    NSString *cacheKey = [self cacheKeyWithElements:2, kCacheKeyMostPopular, category];
-    
-    [self getPagedList:refresh extend:extend cacheKey:cacheKey request:^SKYoutubePagedListResponse *(NSString * _Nullable pageCode) {
-        return [SKYoutubeBrowser listVideos:_key part:@"snippet" chart:@"mostPopular" category:category pageSize:50 pageCode:pageCode];
-    } success:success failure:failure];
-}
-
-- (void)getPagedList:(BOOL)refresh extend:(BOOL)extend cacheKey:(NSString *)cacheKey request:(SKExtendableListRequest)request success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure {
+- (void)youtubePagedList:(BOOL)refresh extend:(BOOL)extend cacheKey:(NSString *)cacheKey request:(SKExtendableListRequest)request success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure {
 
     dispatch_async(_workerQueue, ^{
         SKYoutubeExtendableList *cachedExtendableList = [_cache objectForKey:cacheKey];
@@ -146,6 +161,19 @@ typedef SKYoutubePagedListResponse* (^SKExtendableListRequest)(NSString * _Nulla
     va_end(args);
     
     return newContentString;
+}
+
++ (nonnull SKYoutubeListResponse *)listGuideCategories:(nonnull NSString *)key part:(nonnull NSString *)part locale:(nonnull NSLocale *)locale {
+    
+    NSString *region = [locale objectForKey: NSLocaleCountryCode];
+    
+    NSDictionary *parameter = @{
+                                @"key" : key,
+                                @"part" : part,
+                                @"regionCode" : region
+                                };
+    
+    return (SKYoutubeListResponse *)[SKYoutubeConnection objectForApi:@"youtube/v3/guideCategories" andParameter:parameter];
 }
 
 + (nonnull SKYoutubePagedListResponse *)listChannels:(nonnull NSString *)key part:(nonnull NSString *)part category:(nullable NSString *)category pageSize:(NSUInteger)pageSize pageCode:(nullable NSString *)pageCode {
