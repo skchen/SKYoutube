@@ -16,6 +16,8 @@ static NSString const * kCacheKeySearch = @"search";
 static NSString const * kCacheKeyVideoCategories = @"videoCategories";
 static NSString const * kCacheKeyMostPopular = @"mostPopular";
 
+typedef SKYoutubePagedListResponse* (^SKExtendableListRequest)(NSString * _Nullable pageCode);
+
 @interface SKYoutubeBrowser ()
 
 @property(nonatomic, copy, readonly, nonnull) NSString *key;
@@ -56,31 +58,9 @@ static NSString const * kCacheKeyMostPopular = @"mostPopular";
         [cacheKey appendString:category];
     }
     
-    dispatch_async(_workerQueue, ^{
-        SKYoutubeExtendableList *cachedExtendableList = [_cache objectForKey:cacheKey];
-        
-        if( refresh || (!cachedExtendableList) ) {
-            cachedExtendableList = [[SKYoutubeExtendableList alloc] init];
-            [_cache setObject:cachedExtendableList forKey:cacheKey];
-        }
-        
-        if( extend && !cachedExtendableList.finished ) {
-            SKYoutubePagedListResponse *response = [SKYoutubeBrowser searchVideos:_key query:query part:@"snippet" category:category pageSize:50 pageCode:cachedExtendableList.nextPageToken];
-            
-            if(response) {
-                [cachedExtendableList addObjectsByResponse:response];
-            } else {
-                dispatch_async(_callbackQueue, ^{
-                    failure([NSError errorWithDomain:@"Unable to get response" code:0 userInfo:nil]);
-                });
-                return;
-            }
-        }
-        
-        dispatch_async(_callbackQueue, ^{
-            success(cachedExtendableList.objects, cachedExtendableList.finished);
-        });
-    });
+    [self getPagedList:refresh extend:extend cacheKey:cacheKey request:^SKYoutubePagedListResponse *(NSString * _Nullable pageCode) {
+        return [SKYoutubeBrowser searchVideos:_key query:query part:@"snippet" category:category pageSize:50 pageCode:pageCode];
+    } success:success failure:failure];
 }
 
 - (void)listVideoCategories:(BOOL)refresh success:(nonnull SKListCallback)success failure:(nonnull SKErrorCallback)failure {
@@ -110,13 +90,20 @@ static NSString const * kCacheKeyMostPopular = @"mostPopular";
 
 - (void)listMostPopular:(BOOL)refresh extend:(BOOL)extend category:(nullable NSString *)category success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure {
     
-    const NSString *cacheKey;
+    NSString *cacheKey;
     if(category) {
         cacheKey = [NSString stringWithFormat:@"%@%@", kCacheKeyMostPopular, category];
     } else {
-        cacheKey = kCacheKeyMostPopular;
+        cacheKey = [NSString stringWithFormat:@"%@", kCacheKeyMostPopular];
     }
     
+    [self getPagedList:refresh extend:extend cacheKey:cacheKey request:^SKYoutubePagedListResponse *(NSString * _Nullable pageCode) {
+        return [SKYoutubeBrowser listVideos:_key part:@"snippet" chart:@"mostPopular" category:category pageSize:50 pageCode:pageCode];
+    } success:success failure:failure];
+}
+
+- (void)getPagedList:(BOOL)refresh extend:(BOOL)extend cacheKey:(NSString *)cacheKey request:(SKExtendableListRequest)request success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure {
+
     dispatch_async(_workerQueue, ^{
         SKYoutubeExtendableList *cachedExtendableList = [_cache objectForKey:cacheKey];
         
@@ -126,7 +113,7 @@ static NSString const * kCacheKeyMostPopular = @"mostPopular";
         }
         
         if( extend && !cachedExtendableList.finished ) {
-            SKYoutubePagedListResponse *response = [SKYoutubeBrowser listVideos:_key part:@"snippet" chart:@"mostPopular" category:category pageSize:50 pageCode:cachedExtendableList.nextPageToken];
+            SKYoutubePagedListResponse *response = request(cachedExtendableList.nextPageToken);
             
             if(response) {
                 [cachedExtendableList addObjectsByResponse:response];
