@@ -22,4 +22,7 @@
 
 - (nonnull instancetype)initWithDictionary:(nonnull NSDictionary *)dictionary;
 
+- (BOOL)isChannel;
+- (BOOL)isVideo;
+
 @end

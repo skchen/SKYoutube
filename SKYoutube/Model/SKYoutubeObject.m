@@ -14,7 +14,7 @@ static NSString * const kKeyTag = @"etag";
 static NSString * const kKindChannelListResponse = @"youtube#channelListResponse";
 
 static NSString * const kKindGuideCategoryListResponse = @"youtube#guideCategoryListResponse";
-
+static NSString * const kKindGuidePlaylistListResponse = @"youtube#playlistListResponse";
 static NSString * const kKindSearchListResponse = @"youtube#searchListResponse";
 static NSString * const kKindVideoCategoryListResponse = @"youtube#videoCategoryListResponse";
 static NSString * const kKindVideoListResponse = @"youtube#videoListResponse";
@@ -26,6 +26,7 @@ static NSString * const kClassResource = @"SKYoutubeResource";
 
 static NSString * const kKindChannel = @"youtube#channel";
 static NSString * const kKindGuideCategory = @"youtube#guideCategory";
+static NSString * const kKindPlaylist = @"youtube#playlist";
 static NSString * const kKindSearchResult = @"youtube#searchResult";
 
 static NSString * const kKindVideoCategory = @"youtube#videoCategory";
@@ -51,12 +52,14 @@ static NSString * const kKindVideo = @"youtube#video";
     NSDictionary *mapping = @{
                               kKindChannelListResponse : kClassPagedListResponse,
                               kKindGuideCategoryListResponse : kClassListResponse,
+                              kKindGuidePlaylistListResponse : kClassPagedListResponse,
                               kKindSearchListResponse : kClassPagedListResponse,
                               kKindVideoCategoryListResponse : kClassListResponse,
                               kKindVideoListResponse : kClassPagedListResponse,
                               
                               kKindChannel : kClassResource,
                               kKindGuideCategory : kClassResource,
+                              kKindPlaylist : kClassResource,
                               kKindVideoCategory : kClassVideoCategory,
                               kKindVideo : kClassResource
                               };
@@ -99,6 +102,14 @@ static NSString * const kKindVideo = @"youtube#video";
     _tag = [dictionary objectForKey:kKeyTag];
     
     return self;
+}
+
+- (BOOL)isChannel {
+    return [_kind isEqualToString:kKindChannel];
+}
+
+- (BOOL)isVideo {
+    return [_kind isEqualToString:kKindVideo];
 }
 
 @end
