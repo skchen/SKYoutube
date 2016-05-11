@@ -76,12 +76,12 @@ typedef SKYoutubeListResponse* (^SKListRequest)(void);
     } success:success failure:failure];
 }
 
-- (void)searchVideos:(BOOL)refresh extend:(BOOL)extend query:(nullable NSString *)query category:(nullable NSString *)category success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure {
+- (void)searchVideos:(BOOL)refresh extend:(BOOL)extend query:(nullable NSString *)query channel:(nullable NSString *)channel category:(nullable NSString *)category success:(nonnull SKExtendableListCallback)success failure:(nonnull SKErrorCallback)failure {
     
-    NSString *cacheKey = [self cacheKeyWithElements:3, kCacheKeySearch, query, category];
+    NSString *cacheKey = [self cacheKeyWithElements:4, kCacheKeySearch, query, channel, category];
     
     [self youtubePagedList:refresh extend:extend cacheKey:cacheKey request:^SKYoutubePagedListResponse *(NSString * _Nullable pageCode) {
-        return [SKYoutubeBrowser searchVideos:_key query:query part:@"snippet" category:category pageSize:50 pageCode:pageCode];
+        return [SKYoutubeBrowser searchVideos:_key query:query part:@"snippet" channel:channel category:category pageSize:50 pageCode:pageCode];
     } success:success failure:failure];
 }
 
@@ -256,7 +256,7 @@ typedef SKYoutubeListResponse* (^SKListRequest)(void);
     return (SKYoutubePagedListResponse *)[SKYoutubeConnection objectForApi:@"youtube/v3/playlistItems" andParameter:parameter];
 }
 
-+ (nonnull SKYoutubePagedListResponse *)searchVideos:(nonnull NSString *)key query:(nullable NSString *)query part:(nonnull NSString *)part category:(nullable NSString *)category pageSize:(NSUInteger)pageSize pageCode:(nullable NSString *)pageCode {
++ (nonnull SKYoutubePagedListResponse *)searchVideos:(nonnull NSString *)key query:(nullable NSString *)query part:(nonnull NSString *)part channel:(nullable NSString *)channel category:(nullable NSString *)category pageSize:(NSUInteger)pageSize pageCode:(nullable NSString *)pageCode {
     
     NSDictionary *basicParameter = @{
                                      @"key" : key,
@@ -277,6 +277,10 @@ typedef SKYoutubeListResponse* (^SKListRequest)(void);
     
     if(query) {
         [parameter setObject:query forKey:@"q"];
+    }
+    
+    if(channel) {
+        [parameter setObject:channel forKey:@"channelId"];
     }
     
     return (SKYoutubePagedListResponse *)[SKYoutubeConnection objectForApi:@"youtube/v3/search" andParameter:parameter];
