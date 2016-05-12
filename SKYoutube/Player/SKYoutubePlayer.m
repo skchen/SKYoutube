@@ -134,6 +134,10 @@
 #ifdef VERBOSE
     NSLog(@"didChangeToState:%@", @(state));
 #endif
+    
+    if(state==kYTPlayerStateEnded) {
+        [self notifyCompletion];
+    }
 }
 
 - (void)playerView:(YTPlayerView *)playerView receivedError:(YTPlayerError)error {
