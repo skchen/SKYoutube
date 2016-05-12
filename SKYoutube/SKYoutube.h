@@ -22,5 +22,6 @@ FOUNDATION_EXPORT const unsigned char SKYoutubeVersionString[];
 
 #import <SKYoutube/SKYoutubeBrowser.h>
 #import <SKYoutube/SKYoutubePlayer.h>
+#import <SKYoutube/SKYoutubeListPlayer.h>
 
 
