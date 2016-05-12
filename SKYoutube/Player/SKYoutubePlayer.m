@@ -90,6 +90,7 @@
 - (nullable NSError *)_stop {
     [self executeBlockingWiseInMainThread:^{
         [_innerPlayer stopVideo];
+        _progress = 0;
     }];
     
     return nil;
@@ -99,6 +100,7 @@
     float seekTime = (float)msec/1000;
     [self executeBlockingWiseInMainThread:^{
         [_innerPlayer seekToSeconds:seekTime allowSeekAhead:YES];
+        _progress = msec;
     }];
     
     return nil;
@@ -144,10 +146,12 @@
 #ifdef VERBOSE
     NSLog(@"didPlayTime: %@", @(playTime));
 #endif
-    _progress = round(playTime*1000);
+    if([self isPlaying]) {
+        _progress = round(playTime*1000);
+    }
 }
 
-#pragma mark - Misc 
+#pragma mark - Misc
 
 - (void)executeBlockingWiseInMainThread:(void (^_Nonnull)(void))task; {
     _semaphore = dispatch_semaphore_create(0);
