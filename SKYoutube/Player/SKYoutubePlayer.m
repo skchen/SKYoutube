@@ -109,7 +109,14 @@
 }
 
 - (int)getDuration {
-    return (int)round(_innerPlayer.duration*1000);
+    NSTimeInterval rawDuration;
+    NSTimeInterval *rawDurationPointer = &rawDuration;
+    
+    [self executeBlockingWiseInMainThread:^{
+        *rawDurationPointer = _innerPlayer.duration;
+    }];
+    
+    return (int)round(rawDuration*1000);
 }
 
 #pragma mark - YTPlayerViewDelegate
