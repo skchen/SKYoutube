@@ -14,7 +14,7 @@
 		823E15F31CDB8A42003C59A5 /* SKYoutubeConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 823E15F11CDB8A42003C59A5 /* SKYoutubeConnection.m */; };
 		823E15F61CDB8AAE003C59A5 /* SKYoutubeResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 823E15F41CDB8AAE003C59A5 /* SKYoutubeResponse.h */; };
 		823E15F71CDB8AAE003C59A5 /* SKYoutubeResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 823E15F51CDB8AAE003C59A5 /* SKYoutubeResponse.m */; };
-		823E15FA1CDB8CE1003C59A5 /* SKYoutubeListResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 823E15F81CDB8CE1003C59A5 /* SKYoutubeListResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		823E15FA1CDB8CE1003C59A5 /* SKYoutubeListResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 823E15F81CDB8CE1003C59A5 /* SKYoutubeListResponse.h */; };
 		823E15FB1CDB8CE1003C59A5 /* SKYoutubeListResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 823E15F91CDB8CE1003C59A5 /* SKYoutubeListResponse.m */; };
 		823E15FE1CDB8D49003C59A5 /* SKYoutubePagedListResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 823E15FC1CDB8D49003C59A5 /* SKYoutubePagedListResponse.h */; };
 		823E15FF1CDB8D49003C59A5 /* SKYoutubePagedListResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 823E15FD1CDB8D49003C59A5 /* SKYoutubePagedListResponse.m */; };
@@ -281,8 +281,8 @@
 				823E16021CDB8EE4003C59A5 /* SKYoutubeSnippet.h in Headers */,
 				823E15E71CDB7C61003C59A5 /* SKYoutubeBrowser.h in Headers */,
 				8286B0E11CE4850C003B49EE /* SKYoutubeListPlayer.h in Headers */,
-				823E15FA1CDB8CE1003C59A5 /* SKYoutubeListResponse.h in Headers */,
 				823E16121CDC2CF2003C59A5 /* SKYoutubeResource.h in Headers */,
+				823E15FA1CDB8CE1003C59A5 /* SKYoutubeListResponse.h in Headers */,
 				823E15FE1CDB8D49003C59A5 /* SKYoutubePagedListResponse.h in Headers */,
 				823E15F61CDB8AAE003C59A5 /* SKYoutubeResponse.h in Headers */,
 				82C0D22A1CC891D70025C530 /* SKYoutube.h in Headers */,

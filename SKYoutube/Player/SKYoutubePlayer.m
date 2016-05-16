@@ -12,14 +12,18 @@
 
 #import "YTPlayerView.h"
 
-// #define VERBOSE
+//#define SKLog(__FORMAT__, ...) NSLog((@"%s [Line %d] " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define SKLog(__FORMAT__, ...)
 
 @interface SKYoutubePlayer () <YTPlayerViewDelegate>
 
 @property(nonatomic, strong, nonnull) YTPlayerView *innerPlayer;
 @property(nonatomic, assign) int progress;
 @property(nonatomic, copy, nullable) NSString *youtubeId;
-@property(nonatomic, copy) dispatch_semaphore_t semaphore;
+@property(nonatomic, copy, nullable) SKErrorCallback prepareCallabck;
+@property(nonatomic, copy, nullable) SKErrorCallback startCallabck;
+@property(nonatomic, copy, nullable) SKErrorCallback pauseCallabck;
+@property(nonatomic, copy, nullable) SKErrorCallback stopCallabck;
 
 @end
 
@@ -31,6 +35,8 @@
     _innerPlayer = [[YTPlayerView alloc] init];
     _innerPlayer.delegate = self;
     
+    _workerQueue = dispatch_get_main_queue();
+    
     return self;
 }
 
@@ -41,131 +47,129 @@
     _innerPlayer.delegate = self;
     [view addSubview:_innerPlayer];
     
+    _workerQueue = dispatch_get_main_queue();
+    
     return self;
+}
+
+#pragma mark - Override
+
+- (void)setWorkerQueue:(dispatch_queue_t)workerQueue {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"Change of worker queue is not allowed for %@", NSStringFromClass([self class])]
+                                 userInfo:nil];
 }
 
 #pragma mark - Abstract
 
-- (nullable NSError *)_setDataSource:(nonnull NSString *)source {
+- (void)_setDataSource:(nonnull NSString *)source {
     _youtubeId = ((SKYoutubeResource *)source).videoId;
-    return nil;
 }
 
-- (nullable NSError *)_prepare {
-    _semaphore = dispatch_semaphore_create(0);
-    
+- (void)_prepare:(SKErrorCallback)callback {
     NSDictionary *playerVars = @{
                                  @"playsinline" : @1,
                                  @"origin" : @"http://localhost"
                                  };
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-#ifdef VERBOSE
-        NSLog(@"loadWithVideoId:%@", _youtubeId);
-#endif
-        [_innerPlayer loadWithVideoId:_youtubeId playerVars:playerVars];
-    });
+    SKLog(@"loadWithVideoId:%@", _youtubeId);
     
-    dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
+    _prepareCallabck = callback;
     
-    return nil;
+    [_innerPlayer loadWithVideoId:_youtubeId playerVars:playerVars];
 }
 
-- (nullable NSError *)_start {
-    [self executeBlockingWiseInMainThread:^{
-        [_innerPlayer playVideo];
-    }];
-    
-    return nil;
+- (void)_start:(SKErrorCallback)callback {
+    _startCallabck = callback;
+    [_innerPlayer playVideo];
 }
 
-- (nullable NSError *)_pause {
-    [self executeBlockingWiseInMainThread:^{
-        [_innerPlayer pauseVideo];
-    }];
-    
-    return nil;
+- (void)_pause:(SKErrorCallback)callback {
+    _pauseCallabck = callback;
+    [_innerPlayer pauseVideo];
 }
 
-- (nullable NSError *)_stop {
-    [self executeBlockingWiseInMainThread:^{
-        [_innerPlayer stopVideo];
-        _progress = 0;
-    }];
-    
-    return nil;
+- (void)_stop:(SKErrorCallback)callback {
+    _stopCallabck = callback;
+    [_innerPlayer stopVideo];
 }
 
-- (nullable NSError *)_seekTo:(int)msec {
-    float seekTime = (float)msec/1000;
-    [self executeBlockingWiseInMainThread:^{
-        [_innerPlayer seekToSeconds:seekTime allowSeekAhead:YES];
-        _progress = msec;
-    }];
-    
-    return nil;
+- (void)_seekTo:(NSTimeInterval)time success:(nonnull SKTimeCallback)success failure:(nullable SKErrorCallback)failure {
+    [_innerPlayer seekToSeconds:time allowSeekAhead:YES];
+    success(time);
 }
 
-- (int)getCurrentPosition {
-    return _progress;
+- (void)getCurrentPosition:(SKTimeCallback)success failure:(SKErrorCallback)failure {
+    success(_progress);
 }
 
-- (int)getDuration {
-    NSTimeInterval rawDuration;
-    NSTimeInterval *rawDurationPointer = &rawDuration;
-    
-    [self executeBlockingWiseInMainThread:^{
-        *rawDurationPointer = _innerPlayer.duration;
-    }];
-    
-    return (int)round(rawDuration*1000);
+- (void)getDuration:(SKTimeCallback)success failure:(SKErrorCallback)failure {
+    success(_innerPlayer.duration);
 }
 
 #pragma mark - YTPlayerViewDelegate
 
 - (void)playerViewDidBecomeReady:(nonnull YTPlayerView *)playerView {
-#ifdef VERBOSE
-    NSLog(@"playerViewDidBecomeReady");
-#endif
-    dispatch_semaphore_signal(_semaphore);
+    SKLog(@"playerViewDidBecomeReady");
+    
+    if(_prepareCallabck) {
+        _prepareCallabck(nil);
+        _prepareCallabck = nil;
+    }
 }
 
 - (void)playerView:(YTPlayerView *)playerView didChangeToState:(YTPlayerState)state {
-#ifdef VERBOSE
-    NSLog(@"didChangeToState:%@", @(state));
-#endif
+    SKLog(@"didChangeToState:%@", @(state));
     
-    if(state==kYTPlayerStateEnded) {
-        [self notifyCompletion];
+    switch(state) {
+        case kYTPlayerStatePlaying:
+            if(_startCallabck) {
+                _startCallabck(nil);
+                _startCallabck = nil;
+            }
+            break;
+            
+        case kYTPlayerStatePaused:
+            if(_pauseCallabck) {
+                _pauseCallabck(nil);
+                _pauseCallabck = nil;
+            }
+            break;
+            
+        case kYTPlayerStateQueued:
+            if(_stopCallabck) {
+                _stopCallabck(nil);
+                _stopCallabck = nil;
+            }
+            break;
+            
+        case kYTPlayerStateEnded:
+            [self notifyCompletion:nil];
+            break;
+            
+        default:
+            break;
     }
 }
 
 - (void)playerView:(YTPlayerView *)playerView receivedError:(YTPlayerError)error {
-#ifdef VERBOSE
-    NSLog(@"receivedError:%@", @(error));
-#endif
-}
-
-- (void)playerView:(YTPlayerView *)playerView didPlayTime:(float)playTime {
-#ifdef VERBOSE
-    NSLog(@"didPlayTime: %@", @(playTime));
-#endif
-    if([self isPlaying]) {
-        _progress = round(playTime*1000);
+    SKLog(@"receivedError:%@", @(error));
+    
+    if(_prepareCallabck) {
+        [self notifyErrorMessage:@"YTPlayerView error" callback:_prepareCallabck];
+        _prepareCallabck = nil;
+    } else if(_startCallabck) {
+        [self notifyErrorMessage:@"YTPlayerView error" callback:_startCallabck];
+        _startCallabck = nil;
     }
 }
 
-#pragma mark - Misc
-
-- (void)executeBlockingWiseInMainThread:(void (^_Nonnull)(void))task; {
-    _semaphore = dispatch_semaphore_create(0);
+- (void)playerView:(YTPlayerView *)playerView didPlayTime:(float)playTime {
+    SKLog(@"didPlayTime: %@", @(playTime));
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        task();
-        dispatch_semaphore_signal(_semaphore);
-    });
-    
-    dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
+    if([self isPlaying]) {
+        _progress = playTime;
+    }
 }
 
 @end
