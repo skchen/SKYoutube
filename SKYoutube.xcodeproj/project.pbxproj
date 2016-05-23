@@ -60,13 +60,6 @@
 			remoteGlobalIDString = 82FB6D961CB6E5AE000DE9E9;
 			remoteInfo = "SKUtils-iOS7";
 		};
-		823E15E21CDB77E6003C59A5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 823E15D51CDB76A3003C59A5 /* SKUtils.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 826803531CA94AE600C8B952;
-			remoteInfo = SKUtils;
-		};
 		82C0D2321CC891D70025C530 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 82C0D21D1CC891D70025C530 /* Project object */;
@@ -306,7 +299,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				823E15E31CDB77E6003C59A5 /* PBXTargetDependency */,
 			);
 			name = SKYoutube;
 			productName = SKYoutube;
@@ -446,11 +438,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		823E15E31CDB77E6003C59A5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SKUtils;
-			targetProxy = 823E15E21CDB77E6003C59A5 /* PBXContainerItemProxy */;
-		};
 		82C0D2331CC891D70025C530 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 82C0D2251CC891D70025C530 /* SKYoutube */;
