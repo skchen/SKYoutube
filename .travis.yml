@@ -7,6 +7,6 @@ before_install:
 before_script:
 - git submodule init
 - git submodule update
-- cd Libraries/SKUtils ; xcodebuild -project SKUtils.xcodeproj/ -scheme SKUtils
+- cd Libraries/SKUtils ; xcodebuild -project SKUtils.xcodeproj/ -scheme SKUtils -sdk iphonesimulator
 - carthage bootstrap --platform iOS
 
