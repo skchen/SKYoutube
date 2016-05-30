@@ -100,11 +100,19 @@
 }
 
 - (void)getCurrentPosition:(SKTimeCallback)success failure:(SKErrorCallback)failure {
-    success(_progress);
+    dispatch_async(_callbackQueue, ^{
+        success(_progress);
+    });
 }
 
 - (void)getDuration:(SKTimeCallback)success failure:(SKErrorCallback)failure {
-    success(_innerPlayer.duration);
+    dispatch_async(_workerQueue, ^{
+        NSTimeInterval duration = _innerPlayer.duration;
+        
+        dispatch_async(_callbackQueue, ^{
+            success(duration);
+        });
+    });
 }
 
 #pragma mark - YTPlayerViewDelegate
