@@ -39,27 +39,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		823E15DC1CDB76A3003C59A5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 823E15D51CDB76A3003C59A5 /* SKUtils.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 826803541CA94AE600C8B952;
-			remoteInfo = SKUtils;
-		};
-		823E15DE1CDB76A3003C59A5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 823E15D51CDB76A3003C59A5 /* SKUtils.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8268035E1CA94AE700C8B952;
-			remoteInfo = SKUtilsTests;
-		};
-		823E15E01CDB76A3003C59A5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 823E15D51CDB76A3003C59A5 /* SKUtils.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 82FB6D961CB6E5AE000DE9E9;
-			remoteInfo = "SKUtils-iOS7";
-		};
 		82C0D2321CC891D70025C530 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 82C0D21D1CC891D70025C530 /* Project object */;
@@ -70,7 +49,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		823E15D51CDB76A3003C59A5 /* SKUtils.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SKUtils.xcodeproj; path = Libraries/SKUtils/SKUtils.xcodeproj; sourceTree = SOURCE_ROOT; };
 		823E15E51CDB7C61003C59A5 /* SKYoutubeBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKYoutubeBrowser.h; sourceTree = "<group>"; };
 		823E15E61CDB7C61003C59A5 /* SKYoutubeBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYoutubeBrowser.m; sourceTree = "<group>"; };
 		823E15EC1CDB8619003C59A5 /* SKYoutubeBrowserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYoutubeBrowserTests.m; sourceTree = "<group>"; };
@@ -124,16 +102,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		823E15D61CDB76A3003C59A5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				823E15DD1CDB76A3003C59A5 /* SKUtils.framework */,
-				823E15DF1CDB76A3003C59A5 /* SKUtilsTests.xctest */,
-				823E15E11CDB76A3003C59A5 /* SKUtils.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		823E15E41CDB7C4E003C59A5 /* Browse */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,7 +206,6 @@
 		82C0D26B1CC8957E0025C530 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				823E15D51CDB76A3003C59A5 /* SKUtils.xcodeproj */,
 			);
 			path = Framework;
 			sourceTree = "<group>";
@@ -350,12 +317,6 @@
 			mainGroup = 82C0D21C1CC891D70025C530;
 			productRefGroup = 82C0D2271CC891D70025C530 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 823E15D61CDB76A3003C59A5 /* Products */;
-					ProjectRef = 823E15D51CDB76A3003C59A5 /* SKUtils.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				82C0D2251CC891D70025C530 /* SKYoutube */,
@@ -363,30 +324,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		823E15DD1CDB76A3003C59A5 /* SKUtils.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SKUtils.framework;
-			remoteRef = 823E15DC1CDB76A3003C59A5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		823E15DF1CDB76A3003C59A5 /* SKUtilsTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = SKUtilsTests.xctest;
-			remoteRef = 823E15DE1CDB76A3003C59A5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		823E15E11CDB76A3003C59A5 /* SKUtils.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SKUtils.framework;
-			remoteRef = 823E15E01CDB76A3003C59A5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		82C0D2241CC891D70025C530 /* Resources */ = {
