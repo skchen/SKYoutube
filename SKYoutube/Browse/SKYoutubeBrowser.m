@@ -9,10 +9,8 @@
 #import "SKYoutubeBrowser.h"
 
 #import "SKYoutubeConnection.h"
-
-#import "SKYoutubeExtendableList.h"
-
 #import "SKYoutubeResource.h"
+#import "SKYoutubePagedList.h"
 
 static NSString * const kCacheKeyGuideCategories = @"guideCategories";
 static NSString * const kCacheKeySearch = @"search";
@@ -106,58 +104,31 @@ typedef SKYoutubeListResponse* (^SKListRequest)(void);
 
 - (void)youtubeList:(BOOL)refresh cacheKey:(NSString *)cacheKey request:(SKListRequest)request success:(nonnull SKListCallback)success failure:(nonnull SKErrorCallback)failure {
     
-    
-    
-    dispatch_async(_workerQueue, ^{
-        NSArray *cachedList = [_cache objectForKey:cacheKey];
+    [self cache:refresh cacheKey:cacheKey request:^id _Nullable(NSError *__autoreleasing  _Nullable * _Nullable errorPtr) {
+        SKYoutubeListResponse *response = request();
         
-        if( refresh || (!cachedList) ) {
-            SKYoutubeListResponse *response = request();
-            
-            if(response) {
-                cachedList = response.items;
-                [_cache setObject:cachedList forKey:kCacheKeyVideoCategories];
-            } else {
-                dispatch_async(_callbackQueue, ^{
-                    failure([NSError errorWithDomain:@"Unable to get response" code:0 userInfo:nil]);
-                });
-                return;
-            }
+        if(response) {
+            return response.items;
+        } else {
+            *errorPtr = [NSError errorWithDomain:@"Unable to get response" code:0 userInfo:nil];
+            return nil;
         }
-        
-        dispatch_async(_callbackQueue, ^{
-            success(cachedList);
-        });
-    });
+    } success:success failure:failure];
 }
 
 - (void)youtubePagedList:(BOOL)refresh extend:(BOOL)extend cacheKey:(NSString *)cacheKey request:(SKExtendableListRequest)request success:(nonnull SKPagedListCallback)success failure:(nonnull SKErrorCallback)failure {
-
-    dispatch_async(_workerQueue, ^{
-        SKYoutubeExtendableList *cachedExtendableList = [_cache objectForKey:cacheKey];
+    
+    [self pagedList:refresh extend:extend cacheKey:cacheKey request:^id<SKPagedList> _Nullable(id<SKPagedList>  _Nullable pagedList, NSError *__autoreleasing  _Nullable * _Nullable errorPtr) {
         
-        if( refresh || (!cachedExtendableList) ) {
-            cachedExtendableList = [[SKYoutubeExtendableList alloc] init];
-            [_cache setObject:cachedExtendableList forKey:cacheKey];
+        SKYoutubePagedListResponse *response = request(((SKYoutubePagedList *)pagedList).next);
+        
+        if(response) {
+            return [[SKYoutubePagedList alloc] initWithResponse:response];
+        } else {
+            *errorPtr = [NSError errorWithDomain:@"Unable to get response" code:0 userInfo:nil];
+            return nil;
         }
-        
-        if( extend && !cachedExtendableList.finished ) {
-            SKYoutubePagedListResponse *response = request(cachedExtendableList.nextPageToken);
-            
-            if(response) {
-                [cachedExtendableList addObjectsByResponse:response];
-            } else {
-                dispatch_async(_callbackQueue, ^{
-                    failure([NSError errorWithDomain:@"Unable to get response" code:0 userInfo:nil]);
-                });
-                return;
-            }
-        }
-        
-        dispatch_async(_callbackQueue, ^{
-            success(cachedExtendableList.objects, cachedExtendableList.finished);
-        });
-    });
+    } success:success failure:failure];
 }
 
 + (nonnull SKYoutubeListResponse *)listGuideCategories:(nonnull NSString *)key part:(nonnull NSString *)part locale:(nonnull NSLocale *)locale {
