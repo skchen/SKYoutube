@@ -28,7 +28,7 @@
     
     __weak __typeof(self.player) weakPlayer = self.player;
     
-    SKYoutubeResource *resource = [[SKYoutubeResource alloc] initWithId:@"T3E9Wjbq44E"];
+    SKYoutubeResource *resource = [_list objectAtIndex:_index];
     
     [self.player setSource:resource callback:^(NSError * _Nullable error) {
         if(error) {

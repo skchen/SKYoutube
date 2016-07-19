@@ -20,10 +20,7 @@
 @property(nonatomic, strong, nonnull) YTPlayerView *innerPlayer;
 @property(nonatomic, assign) int progress;
 @property(nonatomic, copy, nullable) NSString *youtubeId;
-@property(nonatomic, copy, nullable) SKErrorCallback prepareCallabck;
 @property(nonatomic, copy, nullable) SKErrorCallback startCallabck;
-@property(nonatomic, copy, nullable) SKErrorCallback pauseCallabck;
-@property(nonatomic, copy, nullable) SKErrorCallback stopCallabck;
 
 @end
 
@@ -133,6 +130,10 @@
 
 - (void)_start:(SKErrorCallback)callback {
     NSDictionary *playerVars = @{
+                                 @"modestbranding" : @1,
+                                 @"rel" : @0,
+                                 @"showinfo" : @0,
+                                 @"controls" : @0,
                                  @"playsinline" : @1,
                                  @"origin" : @"http://localhost"
                                  };
@@ -194,7 +195,7 @@
 }
 
 - (void)_setSource:(id)source callback:(SKErrorCallback)callback {
-    _youtubeId = ((SKYoutubeResource *)source).id;
+    _youtubeId = ((SKYoutubeResource *)source).videoId;
     
     dispatch_async(self.callbackQueue, ^{
         callback(nil);
@@ -203,6 +204,23 @@
             [_delegate playerDidChangeSource:self];
         }
     });
+}
+
+#pragma mark - Progress
+
+- (void)seekTo:(NSTimeInterval)time success:(SKTimeCallback)success failure:(SKErrorCallback)failure {
+    switch (_state) {
+        case SKPlayerPlaying: {
+            dispatch_async(self.workerQueue, ^{
+                [self _seekTo:time success:[self wrappedTimeCallback:success] failure:[self wrappedErrorCallback:failure]];
+            });
+        }
+            break;
+            
+        default:
+            [self notifyIllegalStateException:failure];
+            break;
+    }
 }
 
 - (void)_seekTo:(NSTimeInterval)time success:(nonnull SKTimeCallback)success failure:(nullable SKErrorCallback)failure {

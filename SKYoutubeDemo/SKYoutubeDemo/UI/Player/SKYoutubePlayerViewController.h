@@ -11,6 +11,8 @@
 
 @interface SKYoutubePlayerViewController : SKPlayerViewController
 
+@property(nonatomic, strong, nonnull) NSArray *list;
+@property(nonatomic, assign) NSUInteger index;
 
 @end
 
