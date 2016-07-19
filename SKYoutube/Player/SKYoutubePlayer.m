@@ -37,6 +37,8 @@
     
     _workerQueue = dispatch_get_main_queue();
     
+    _state = SKPlayerStopped;
+    
     return self;
 }
 
@@ -49,6 +51,8 @@
     
     _workerQueue = dispatch_get_main_queue();
     
+    _state = SKPlayerStopped;
+    
     return self;
 }
 
@@ -60,13 +64,74 @@
                                  userInfo:nil];
 }
 
-#pragma mark - Abstract
+#pragma mark - State
 
-- (void)_setDataSource:(nonnull NSString *)source {
-    _youtubeId = ((SKYoutubeResource *)source).videoId;
+- (void)start:(SKErrorCallback)callback {
+    SKErrorCallback wrappedCallback = ^(NSError * _Nullable error) {
+        dispatch_async(self.callbackQueue, ^{
+            callback(error);
+        });
+    };
+    
+    dispatch_async(self.workerQueue, ^{
+        switch (_state) {
+            case SKPlayerStopped:
+                [self _start:wrappedCallback];
+                break;
+                
+            case SKPlayerPaused:
+                [self _resume:wrappedCallback];
+                break;
+                
+            default:
+                [self notifyIllegalStateException:callback];
+                break;
+        }
+    });
 }
 
-- (void)_prepare:(SKErrorCallback)callback {
+- (void)pause:(SKErrorCallback)callback {
+    SKErrorCallback wrappedCallback = ^(NSError * _Nullable error) {
+        dispatch_async(self.callbackQueue, ^{
+            callback(error);
+        });
+    };
+    
+    dispatch_async(self.workerQueue, ^{
+        switch (_state) {
+            case SKPlayerPlaying:
+                [self _pause:wrappedCallback];
+                break;
+                
+            default:
+                [self notifyIllegalStateException:callback];
+                break;
+        }
+    });
+}
+
+- (void)stop:(SKErrorCallback)callback {
+    SKErrorCallback wrappedCallback = ^(NSError * _Nullable error) {
+        dispatch_async(self.callbackQueue, ^{
+            callback(error);
+        });
+    };
+    
+    dispatch_async(self.workerQueue, ^{
+        switch (_state) {
+            case SKPlayerPlaying:
+            case SKPlayerPaused:
+                [self _stop:wrappedCallback];
+                break;
+                
+            default:
+                [self notifyIllegalStateException:callback];
+                break;
+        }
+    });
+}
+
+- (void)_start:(SKErrorCallback)callback {
     NSDictionary *playerVars = @{
                                  @"playsinline" : @1,
                                  @"origin" : @"http://localhost"
@@ -74,24 +139,70 @@
     
     SKLog(@"loadWithVideoId:%@", _youtubeId);
     
-    _prepareCallabck = callback;
+    _startCallabck = callback;
     
     [_innerPlayer loadWithVideoId:_youtubeId playerVars:playerVars];
 }
 
-- (void)_start:(SKErrorCallback)callback {
-    _startCallabck = callback;
+- (void)_resume:(SKErrorCallback)callback {
     [_innerPlayer playVideo];
+    callback(nil);
 }
 
 - (void)_pause:(SKErrorCallback)callback {
-    _pauseCallabck = callback;
     [_innerPlayer pauseVideo];
+    callback(nil);
 }
 
 - (void)_stop:(SKErrorCallback)callback {
-    _stopCallabck = callback;
     [_innerPlayer stopVideo];
+    callback(nil);
+}
+
+#pragma mark - Source
+
+- (void)setSource:(nonnull id)source callback:(nullable SKErrorCallback)callback {
+    __weak __typeof(self) weakSelf = self;
+    
+    switch (_state) {
+        case SKPlayerStopped:
+            [self _setSource:source callback:callback];
+            break;
+            
+        case SKPlayerPaused:
+        case SKPlayerPlaying: {
+            [self stop:^(NSError * _Nullable error) {
+                if(error) {
+                    callback(error);
+                } else {
+                    [self setSource:source callback:^(NSError * _Nullable error) {
+                        if(error) {
+                            callback(error);
+                        } else {
+                            [weakSelf start:callback];
+                        }
+                    }];
+                }
+            }];
+        }
+            break;
+            
+        default:
+            [self notifyIllegalStateException:callback];
+            break;
+    }
+}
+
+- (void)_setSource:(id)source callback:(SKErrorCallback)callback {
+    _youtubeId = ((SKYoutubeResource *)source).id;
+    
+    dispatch_async(self.callbackQueue, ^{
+        callback(nil);
+        
+        if([_delegate respondsToSelector:@selector(playerDidChangeSource:)]) {
+            [_delegate playerDidChangeSource:self];
+        }
+    });
 }
 
 - (void)_seekTo:(NSTimeInterval)time success:(nonnull SKTimeCallback)success failure:(nullable SKErrorCallback)failure {
@@ -99,7 +210,7 @@
     success(time);
 }
 
-- (void)getCurrentPosition:(SKTimeCallback)success failure:(SKErrorCallback)failure {
+- (void)getProgress:(SKTimeCallback)success failure:(SKErrorCallback)failure {
     dispatch_async(_callbackQueue, ^{
         success(_progress);
     });
@@ -120,9 +231,8 @@
 - (void)playerViewDidBecomeReady:(nonnull YTPlayerView *)playerView {
     SKLog(@"playerViewDidBecomeReady");
     
-    if(_prepareCallabck) {
-        _prepareCallabck(nil);
-        _prepareCallabck = nil;
+    if(_startCallabck) {
+        [self _resume:_startCallabck];
     }
 }
 
@@ -131,27 +241,19 @@
     
     switch(state) {
         case kYTPlayerStatePlaying:
-            if(_startCallabck) {
-                _startCallabck(nil);
-                _startCallabck = nil;
-            }
+            [self changeState:SKPlayerPlaying callback:nil];
             break;
             
         case kYTPlayerStatePaused:
-            if(_pauseCallabck) {
-                _pauseCallabck(nil);
-                _pauseCallabck = nil;
-            }
+            [self changeState:SKPlayerPaused callback:nil];
             break;
             
         case kYTPlayerStateQueued:
-            if(_stopCallabck) {
-                _stopCallabck(nil);
-                _stopCallabck = nil;
-            }
+            [self changeState:SKPlayerStopped callback:nil];
             break;
             
         case kYTPlayerStateEnded:
+            [self changeState:SKPlayerStopped callback:nil];
             [self playbackDidComplete:_source];
             break;
             
@@ -163,10 +265,7 @@
 - (void)playerView:(YTPlayerView *)playerView receivedError:(YTPlayerError)error {
     SKLog(@"receivedError:%@", @(error));
     
-    if(_prepareCallabck) {
-        [self notifyErrorMessage:@"YTPlayerView error" callback:_prepareCallabck];
-        _prepareCallabck = nil;
-    } else if(_startCallabck) {
+    if(_startCallabck) {
         [self notifyErrorMessage:@"YTPlayerView error" callback:_startCallabck];
         _startCallabck = nil;
     }
