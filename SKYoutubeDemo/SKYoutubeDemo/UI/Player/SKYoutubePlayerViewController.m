@@ -13,6 +13,7 @@
 @interface SKYoutubePlayerViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *screenView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @end
 
@@ -49,6 +50,15 @@
             NSLog(@"Unable to stop: %@", error);
         }
     }];
+}
+
+- (void)playerDidChangeSource:(SKPlayer *)player {
+    [super playerDidChangeSource:player];
+    
+    id singleSource = [self.listPlayer.source objectAtIndex:self.listPlayer.index];
+    
+    SKYoutubeResource *resource = (SKYoutubeResource *)singleSource;
+    [_nameLabel setText:resource.title];
 }
 
 @end

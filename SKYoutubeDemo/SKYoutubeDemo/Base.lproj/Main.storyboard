@@ -266,6 +266,7 @@
                     <connections>
                         <outlet property="durationLabel" destination="PZw-rb-7g5" id="ccW-BP-hv0"/>
                         <outlet property="loopSwitch" destination="bNo-yd-aKy" id="56I-Pf-E2W"/>
+                        <outlet property="nameLabel" destination="EQV-Fo-ZhQ" id="BuY-JY-Owt"/>
                         <outlet property="nextButton" destination="lJw-Gl-oGg" id="lab-Lp-WIa"/>
                         <outlet property="playPauseButton" destination="cCa-A9-McB" id="bfs-VQ-kKW"/>
                         <outlet property="previousButton" destination="vQv-nt-5U5" id="PxI-LR-P2K"/>
