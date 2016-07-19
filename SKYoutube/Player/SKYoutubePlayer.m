@@ -63,71 +63,6 @@
 
 #pragma mark - State
 
-- (void)start:(SKErrorCallback)callback {
-    SKErrorCallback wrappedCallback = ^(NSError * _Nullable error) {
-        dispatch_async(self.callbackQueue, ^{
-            callback(error);
-        });
-    };
-    
-    dispatch_async(self.workerQueue, ^{
-        switch (_state) {
-            case SKPlayerStopped:
-                [self _start:wrappedCallback];
-                break;
-                
-            case SKPlayerPaused:
-                [self _resume:wrappedCallback];
-                break;
-                
-            default:
-                [self notifyIllegalStateException:callback];
-                break;
-        }
-    });
-}
-
-- (void)pause:(SKErrorCallback)callback {
-    SKErrorCallback wrappedCallback = ^(NSError * _Nullable error) {
-        dispatch_async(self.callbackQueue, ^{
-            callback(error);
-        });
-    };
-    
-    dispatch_async(self.workerQueue, ^{
-        switch (_state) {
-            case SKPlayerPlaying:
-                [self _pause:wrappedCallback];
-                break;
-                
-            default:
-                [self notifyIllegalStateException:callback];
-                break;
-        }
-    });
-}
-
-- (void)stop:(SKErrorCallback)callback {
-    SKErrorCallback wrappedCallback = ^(NSError * _Nullable error) {
-        dispatch_async(self.callbackQueue, ^{
-            callback(error);
-        });
-    };
-    
-    dispatch_async(self.workerQueue, ^{
-        switch (_state) {
-            case SKPlayerPlaying:
-            case SKPlayerPaused:
-                [self _stop:wrappedCallback];
-                break;
-                
-            default:
-                [self notifyIllegalStateException:callback];
-                break;
-        }
-    });
-}
-
 - (void)_start:(SKErrorCallback)callback {
     NSDictionary *playerVars = @{
                                  @"modestbranding" : @1,
@@ -162,39 +97,8 @@
 
 #pragma mark - Source
 
-- (void)setSource:(nonnull id)source callback:(nullable SKErrorCallback)callback {
-    __weak __typeof(self) weakSelf = self;
-    
-    switch (_state) {
-        case SKPlayerStopped:
-            [self _setSource:source callback:callback];
-            break;
-            
-        case SKPlayerPaused:
-        case SKPlayerPlaying: {
-            [self stop:^(NSError * _Nullable error) {
-                if(error) {
-                    callback(error);
-                } else {
-                    [self setSource:source callback:^(NSError * _Nullable error) {
-                        if(error) {
-                            callback(error);
-                        } else {
-                            [weakSelf start:callback];
-                        }
-                    }];
-                }
-            }];
-        }
-            break;
-            
-        default:
-            [self notifyIllegalStateException:callback];
-            break;
-    }
-}
-
 - (void)_setSource:(id)source callback:(SKErrorCallback)callback {
+    _source = source;
     _youtubeId = ((SKYoutubeResource *)source).videoId;
     
     dispatch_async(self.callbackQueue, ^{
@@ -216,6 +120,16 @@
             });
         }
             break;
+            
+        case SKPlayerStopped: {
+            [self _start:^(NSError * _Nullable error) {
+                if(error) {
+                    failure(error);
+                } else {
+                    [self _seekTo:time success:success failure:failure];
+                }
+            }];
+        }
             
         default:
             [self notifyIllegalStateException:failure];
@@ -251,6 +165,7 @@
     
     if(_startCallabck) {
         [self _resume:_startCallabck];
+        _startCallabck = nil;
     }
 }
 
@@ -258,6 +173,10 @@
     SKLog(@"didChangeToState:%@", @(state));
     
     switch(state) {
+        case kYTPlayerStateBuffering:
+            [self changeState:SKPlayerStopped callback:nil];
+            break;
+            
         case kYTPlayerStatePlaying:
             [self changeState:SKPlayerPlaying callback:nil];
             break;

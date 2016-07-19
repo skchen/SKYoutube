@@ -8,8 +8,8 @@
 
 #import <SKUtils/SKUtils.h>
 
-@class SKYoutubeResource;
+@interface SKYoutubeListPlayer : SKNestedListPlayer
 
-@interface SKYoutubeListPlayer : SKListPlayer
+- (nonnull instancetype)initWithView:(nonnull UIView *)view;
 
 @end

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <SKUtils/SKUtils.h>
 
-@interface SKYoutubePlayer : SKPlayer
+@interface SKYoutubePlayer : SKSimplePlayer
 
 - (nonnull instancetype)initWithView:(nonnull UIView *)view;
 

@@ -18,7 +18,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CCX-Ep-PjE" id="zqt-Ul-Av0">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -266,9 +266,13 @@
                     <connections>
                         <outlet property="durationLabel" destination="PZw-rb-7g5" id="ccW-BP-hv0"/>
                         <outlet property="loopSwitch" destination="bNo-yd-aKy" id="56I-Pf-E2W"/>
+                        <outlet property="nextButton" destination="lJw-Gl-oGg" id="lab-Lp-WIa"/>
                         <outlet property="playPauseButton" destination="cCa-A9-McB" id="bfs-VQ-kKW"/>
+                        <outlet property="previousButton" destination="vQv-nt-5U5" id="PxI-LR-P2K"/>
                         <outlet property="progressLabel" destination="6cJ-mZ-ZEu" id="DBh-rM-Sba"/>
                         <outlet property="progressSlider" destination="Rd7-Ql-Ngc" id="CEB-Ql-siU"/>
+                        <outlet property="randomSwitch" destination="KE0-Kz-nPS" id="w4J-yw-OTN"/>
+                        <outlet property="repeatSwitch" destination="EcA-Wq-Mzw" id="Z83-yh-lHX"/>
                         <outlet property="screenView" destination="YbZ-UV-5Fd" id="fNW-eB-6Pk"/>
                         <outlet property="stopButton" destination="did-6d-xir" id="uSX-Ri-3cc"/>
                     </connections>

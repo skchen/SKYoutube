@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.player = [[SKYoutubePlayer alloc] initWithView:_screenView];
+    self.player = [[SKYoutubeListPlayer alloc] initWithView:_screenView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -28,9 +28,7 @@
     
     __weak __typeof(self.player) weakPlayer = self.player;
     
-    SKYoutubeResource *resource = [_list objectAtIndex:_index];
-    
-    [self.player setSource:resource callback:^(NSError * _Nullable error) {
+    [self.listPlayer setSource:_list atIndex:_index callback:^(NSError * _Nullable error) {
         if(error) {
             NSLog(@"Unable to set source: %@", error);
         } else {

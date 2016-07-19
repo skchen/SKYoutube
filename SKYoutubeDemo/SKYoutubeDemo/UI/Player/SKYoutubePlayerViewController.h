@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <SKUtils/SKUtils.h>
 
-@interface SKYoutubePlayerViewController : SKPlayerViewController
+@interface SKYoutubePlayerViewController : SKListPlayerViewController
 
 @property(nonatomic, strong, nonnull) NSArray *list;
 @property(nonatomic, assign) NSUInteger index;

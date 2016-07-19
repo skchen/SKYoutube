@@ -8,6 +8,14 @@
 
 #import "SKYoutubeListPlayer.h"
 
+#import "SKYoutubePlayer.h"
+
 @implementation SKYoutubeListPlayer
+
+- (nonnull instancetype)initWithView:(nonnull UIView *)view {
+    SKYoutubePlayer *innerPlayer = [[SKYoutubePlayer alloc] initWithView:view];
+    self = [super initWithPlayer:innerPlayer];
+    return self;
+}
 
 @end
