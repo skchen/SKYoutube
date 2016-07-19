@@ -6,12 +6,10 @@
 //  Copyright © 2016年 SK. All rights reserved.
 //
 
-#import <SKUtils/SKPlayer.h>
-
 #import <UIKit/UIKit.h>
-#import "SKYoutubeResource.h"
+#import <SKUtils/SKUtils.h>
 
-@interface SKYoutubePlayer : SKPlayer<SKYoutubeResource *>
+@interface SKYoutubePlayer : SKSimplePlayer
 
 - (nonnull instancetype)initWithView:(nonnull UIView *)view;
 

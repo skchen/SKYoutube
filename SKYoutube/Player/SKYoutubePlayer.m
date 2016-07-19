@@ -8,11 +8,11 @@
 
 #import "SKYoutubePlayer.h"
 
-@import SKUtils;
-
 #import "YTPlayerView.h"
 
-//#define SKLog(__FORMAT__, ...) NSLog((@"%s [Line %d] " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#import "SKYoutubeResource.h"
+
+#undef SKLog
 #define SKLog(__FORMAT__, ...)
 
 @interface SKYoutubePlayer () <YTPlayerViewDelegate>
@@ -152,7 +152,7 @@
             break;
             
         case kYTPlayerStateEnded:
-            [self notifyCompletion:nil];
+            [self playbackDidComplete:_source];
             break;
             
         default:
@@ -175,7 +175,7 @@
 - (void)playerView:(YTPlayerView *)playerView didPlayTime:(float)playTime {
     SKLog(@"didPlayTime: %@", @(playTime));
     
-    if([self isPlaying]) {
+    if(_state==SKPlayerPlaying) {
         _progress = playTime;
     }
 }

@@ -10,6 +10,6 @@
 
 @class SKYoutubeResource;
 
-@interface SKYoutubeListPlayer : SKListPlayer<SKYoutubeResource *>
+@interface SKYoutubeListPlayer : SKListPlayer
 
 @end

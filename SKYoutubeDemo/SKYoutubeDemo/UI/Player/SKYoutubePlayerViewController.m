@@ -1,0 +1,56 @@
+//
+//  ViewController.m
+//  SKYoutubePlayer
+//
+//  Created by Shin-Kai Chen on 2016/4/19.
+//  Copyright © 2016年 SK. All rights reserved.
+//
+
+#import "SKYoutubePlayerViewController.h"
+
+#import <SKYoutube/SKYoutube.h>
+
+@interface SKYoutubePlayerViewController ()
+
+@property (weak, nonatomic) IBOutlet UIView *screenView;
+
+@end
+
+@implementation SKYoutubePlayerViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.player = [[SKYoutubePlayer alloc] initWithView:_screenView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    __weak __typeof(self.player) weakPlayer = self.player;
+    
+    SKYoutubeResource *resource = [[SKYoutubeResource alloc] initWithId:@"T3E9Wjbq44E"];
+    
+    [self.player setSource:resource callback:^(NSError * _Nullable error) {
+        if(error) {
+            NSLog(@"Unable to set source: %@", error);
+        } else {
+            [weakPlayer start:^(NSError * _Nullable error) {
+                if(error) {
+                    NSLog(@"Unable to start: %@", error);
+                }
+            }];
+        }
+    }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self.player stop:^(NSError * _Nullable error) {
+        if(error) {
+            NSLog(@"Unable to stop: %@", error);
+        }
+    }];
+}
+
+@end

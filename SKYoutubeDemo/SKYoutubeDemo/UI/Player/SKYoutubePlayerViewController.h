@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SKUtils/SKUtils.h>
 
-@interface SKPlayerViewController : UIViewController
+@interface SKYoutubePlayerViewController : SKPlayerViewController
 
 
 @end

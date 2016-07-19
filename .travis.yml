@@ -1,12 +1,10 @@
 language: objective-c
-osx_image: xcode7.2
-xcode_project: SKYoutube.xcodeproj
-xcode_scheme: SKYoutube
+osx_image: xcode7.3
+xcode_workspace: SKYoutubeDemo/SKYoutubeDemo.xcworkspace
+xcode_scheme: SKYoutubeDemo
 xcode_sdk: iphonesimulator
 before_install:
 before_script:
 - git submodule init
 - git submodule update
-#- xcodebuild -project Libraries/SKUtils/SKUtils.xcodeproj -target SKUtils-iOS7 -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-- carthage bootstrap --platform iOS
 
